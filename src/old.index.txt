@@ -1,0 +1,118 @@
+import { lwSM, LwStatus, isStatusDefined } from "./lwstatus";
+// import {themeMgr as tm, initTM}from './tm';
+
+const logIt = (msg: string)=>{console.log(msg);};
+let sm: SM_Override = {
+    // defaults to standard to console.log() to start
+    quick: logIt,    sayIt: logIt,alert: logIt,    polite: logIt,        
+    log: logIt,
+}
+let statusMessage: HTMLElement=document.getElementById(`lw-status-message`)!;
+
+// Displays a status message for a specified time in milliseconds, replaces current default or appends.
+// Warning if to fast writing to status, prior clear timer will erase it too soon for screen readers
+const displayStatus = (msg:string, clrTime: number = 5000) => {
+    statusMessage.innerHTML = msg;
+    setTimeout(() => { statusMessage.innerHTML = ""; }, clrTime)
+
+}; // displayStatus
+
+const setCopyCode = () => {
+    try {
+        const copyCode = (e:Event, c:HTMLElement) => {
+            const code = c.innerHTML
+            navigator.clipboard.writeText(code);
+            displayStatus("Code copied to clipboard");
+            e.preventDefault();
+
+        };  // copyCode 
+        const makeCopyBtn = (code:HTMLElement) => {
+            const btn = document.createElement("button")
+            btn.setAttribute("alt", "copy code to clpboard");
+            btn.innerHTML = "copy";
+            btn.setAttribute("class", "code-button")
+            btn.onclick = (e) => { copyCode(e, code); };
+            return btn;
+        }; //  makeCopyBtn 
+        const codes = document.querySelectorAll("code");
+        codes.forEach((code) => {
+            code.after(makeCopyBtn(code));
+        }
+        );
+    } catch (error:any) {
+        sm.alert(`setCopyCode error: ${error.message}`);
+    }; // catch
+}; // setCopyCode
+
+const setUpSM = () =>{
+sm.log("Setting up Status Messages...");    
+    try {
+        //@ts-ignore
+        if (typeof  isStatusDefined != "null") {
+        sm.log("No Status Message Handler Installed You may miss it!");
+            if (statusMessage) {
+                sm.alert = (msg:string)=>{
+                    displayStatus(msg); console.log(msg);};
+                sm.quick = (msg: string) => { displayStatus(msg); };
+                sm.poite = sm.quick;
+                sm.sayIt = sm.quick;
+                sm.alert("Only localized statusmessage available.");
+                const btn = <HTMLButtonElement>document.getElementById(`sm-demo-button`)!;
+                const div = document.getElementById("lw-status-region");
+                if (btn) btn.parentNode?.removeChild(btn);
+                if (div) div.parentNode?.removeChild(div);
+
+
+
+            
+            } else sm.log("No Status area found.  Only console.log available");
+} else {
+//@ts-ignore
+    sm = lwSM;      
+        sm. quick("sm installed...");
+            const btn = <HTMLButtonElement>document.getElementById(`sm-demo-button`)!;
+
+            const dlg = <HTMLDialogElement>document.getElementById(`sm-tester-dialog`)!;
+            sm.alert(`button demo: ${btn}`);
+            btn.onclick = (e:any)=>{ sm.demo()};
+            sm.alert("LW Status Message Handler Installed");
+
+            // setTimeout(() => { sm.quick("LW Status Message Handler Installed") }, 5000);
+}
+
+}
+ catch(err:any) {
+    sm.alert(`Error Loadaing status message: ${err.message} `);
+ }
+/*
+    initTM(sm.alert, sm.log);
+    const tme = <HTMLButtonElement>document.getElementById("tm-editor-btn")!;
+
+    tme.addEventListener("click", () => { tm.showEditor()})
+
+    */
+
+} // setUpSM 
+
+
+// General page wireUp
+//
+const wireUp = () => {
+        setCopyCode();
+
+        const goToMain = () => {
+            const h = document.getElementById(`main-heading`)
+            if (h) h.focus()
+
+        } // goToMain()
+        const b= <HTMLButtonElement>document.getElementById("go2main")
+
+         if (b) b.onclick = () => { goToMain(); };
+    setUpSM(); 
+
+} // wireUp()
+
+
+
+    console.log( "running index.js!!!");
+

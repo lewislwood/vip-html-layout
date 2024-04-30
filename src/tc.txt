@@ -1,0 +1,175 @@
+"use strict";
+
+let sayAlert:Function, talkCon: TalkingConsole;
+type KH__Key = { name?: string, key: string, altKey: boolean, ctrlKey: boolean, shiftKey: boolean, metaKey: boolean, test: number, action?: Function};
+
+
+
+class TalkingConsole {
+    container: HTMLDivElement;
+    talkCtrl: HTMLDivElement;
+    clearButton: HTMLButtonElement;
+    hideClass = "hidden";
+    keyEnums = { altKey: 2, ctrlKey: 4, metaKey: 8, shiftKey: 16 }
+    keyToggler: KH__Key = { name: "toggler", key: "D", altKey: false, ctrlKey: true, shiftKey: true, metaKey: false, test: 0, action: undefined};
+    keyClear: KH__Key = { name: "clear", key: "c", altKey: true, ctrlKey: false, shiftKey: false, metaKey: false, test: 0, action: undefined};
+    keyTesters: KH__Key[] = [];
+    constructor(
+        // Container to hold the Talking Console
+        containerDivOrID:HTMLDivElement | string  = "talk-container", 
+        // Actual Talking Aler aria area role=aler
+    talkCtrlOrID: HTMLDivElement | string = "talk-control", 
+    clearButtonOrID: HTMLButtonElement | string = "talk-clear", 
+    // You can have a custom Hide css Class
+    hideClassName = "hidden") {
+        if (typeof containerDivOrID === "string") this.container = <HTMLDivElement>document.getElementById(containerDivOrID)
+        else this.container = containerDivOrID;
+        if (typeof talkCtrlOrID === "string") this.talkCtrl = <HTMLDivElement>document.getElementById(talkCtrlOrID)
+        else this.talkCtrl = talkCtrlOrID;
+        if (typeof clearButtonOrID === "string") this.clearButton = <HTMLButtonElement>document.getElementById(clearButtonOrID)
+        else this.clearButton = clearButtonOrID;
+        this.hideClass = hideClassName
+
+        this.clearButton.onclick = () => { this.talkCtrl.innerHTML = ""; };
+
+        this.clear("");
+        this.disable(true, true);
+
+    }; //constructor
+    enable(forAll = false, displayInfoMsg = true) {
+        try {
+
+            const c = this.container;
+
+            c.setAttribute("aria-hidden", "false");  // screen reader visible now
+            if (forAll) c.classList.remove(this.hideClass)  // Make visible for  All people
+            else c.classList.add(this.hideClass); // Hide from eyesight
+            if (displayInfoMsg) this.sayIt(`Console enabled ${(forAll) ? "for all" : ""}`)
+
+        } catch (error: any) {
+            this.sayIt(`enable error: ${error.message}  class = ${this.hideClass}`)
+        }; // catch
+    }; // enable( for All)
+    disable(forAll = false, displayInfoMsg = true) {
+        const c = this.container;
+        if (forAll) this.clear("");
+        setTimeout(() => { c.setAttribute("aria-hidden", forAll? "true":"false") }, 350);   // Hide or not to hide from screen reader
+        c.classList.add(this.hideClass)  // Hide from eyesight 
+        if (displayInfoMsg) this.sayIt(`Console disabled ${(forAll) ? "for all" : ""}`)
+    }; // disable( forAll)
+    sayIt(msg: string) {
+        const tc = this.talkCtrl;
+        tc.innerHTML = msg + "<br>" + tc.innerHTML;
+    }; // sayIt( msg)
+    clear(infoMsg = "console cleared") {
+        this.talkCtrl.innerHTML = infoMsg;
+    }; // Clear()
+    // Converts the event object into a bitwise number
+    getKeyTest(ev: KeyboardEvent | KH__Key): number {
+        const en = this.keyEnums;
+        let i = 0;
+        try {
+            if (ev.altKey) i = i + en["altKey"];
+
+            if (ev.ctrlKey) i += en.ctrlKey;
+            if (ev.metaKey) i += en.metaKey;
+            if (ev.shiftKey) i += en.shiftKey;
+            return i;
+        } catch (error:any) {
+            this.sayIt(`TC.getTest error:  ${error.message}`);
+        }; // catch
+        return -1;
+    }; // getKeyTest
+    addKeyTest(kt: KH__Key) {
+        kt.test = -1;
+        if (kt.key) {
+            kt.test = this.getKeyTest(kt);
+            kt.key = (kt.shiftKey) ? kt.key.toUpperCase() : kt.key.toLowerCase();
+        };
+        const index = this.keyTesters.findIndex((k) => { return (k.name === kt.name); });
+        if (index > -1) this.keyTesters[index] = kt
+        else {
+            this.keyTesters.push(kt);
+        };
+    }; // addKeyTest
+
+    keyHandler(ev: KeyboardEvent) {
+        const eTests = this.getKeyTest(ev  ), kt = this.keyTesters;
+        let handled = false;
+        try {
+
+            for (let iKey = 0; iKey < kt.length; iKey++) {
+                const k = kt[iKey];
+
+                if (k.test > -1) {
+                    if ((k.test === eTests) && (k.key === ev.key)) {
+                        handled = true;
+                        this.sayIt(`Handling key ${k.name}`);
+                        //@ts-ignore
+                        k.action(ev);
+                    };
+                }; // if kt > -1
+            }; // for
+
+            if (handled) ev.preventDefault();
+        } catch (error:any) {
+            this.sayIt(`KH error: ${error.message}  kt is ${JSON.stringify(kt)}`);
+        };
+    }; // keyHandler;
+    toggleConsole() {
+        const c = this.container;
+        const isHidden = c.classList.contains(this.hideClass);
+        const isTalking = (c.getAttribute("aria-hidden") === "false");
+        try {
+            if (isTalking && isHidden) this.disable(true)  // Disable for all
+            else if (isTalking) this.enable(false)    //      
+            else this.enable(true);  // disable for all
+        } catch (error:any) {
+            this.sayIt(`tc error: ${error.message}`);
+
+        }; //catch
+    }; // toggleConsole()
+    enableKeyHandling(toggleKey?: KH__Key, clearKey?: KH__Key) {
+        try {
+            if (toggleKey) this.keyToggler = toggleKey
+            else toggleKey = this.keyToggler;
+            if (clearKey) this.keyClear = clearKey
+            else clearKey = this.keyClear;
+            const validKey = (k: KH__Key) => {
+                if (!("name" in k)) k["name"] = undefined
+                if (!("action" in k)) k["action"] = undefined;
+            };
+
+            validKey(toggleKey); validKey(clearKey);
+            if (!toggleKey.name) toggleKey.name = "toggler";
+            if (!toggleKey.action) toggleKey.action = () => { this.toggleConsole() };
+            if (!clearKey.name) clearKey.name = "clear";
+            if (!clearKey.action) clearKey.action = () => { this.clear("consel was cleared") };
+            this.addKeyTest(toggleKey);
+            this.addKeyTest(clearKey);
+            window.addEventListener("keyup", (ev) => { this.keyHandler(ev); });
+        } catch (error:any) {
+            this.sayIt(`Talking Console Enable Key Handling error: ${error.message}`);
+
+        }; //catch
+    };  // enableKeyHandling
+
+
+
+    /*
+    Here is the HTML you may want to place for this talking console
+    <div id="talk-container" class="hidden"aria-hidden ="true" >
+    <h5>Talking Console (ctrl+shift+D)</h5>
+
+<div id="talk-control" role="alert">
+
+    <p>Please wait I am loading...</p>
+</div>    
+<button id="talk-clear" alt="Clear Console (alt+c)" ">Clear Talking Console (alt+c)</button>
+</div>
+
+
+
+*/
+
+}; // talkingConsole

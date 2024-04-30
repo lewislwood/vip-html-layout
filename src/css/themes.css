@@ -1,0 +1,75 @@
+
+/* Modal Dialogue Backdrop color */
+::backdrop {
+  background-image: linear-gradient(
+    45deg,
+    magenta,
+    rebeccapurple,
+    dodgerblue,
+    green
+  );
+  opacity: 0.75;
+}
+
+:root {
+    /* Colors for theme pink -> simply email them to the developer and they will  incorporate these values for you */
+ --pink-fg: #14f018;
+ --pink-bg: #f00000;
+ --pink-dlg-fg: #000000;
+ --pink-dlg-bg: #000000;
+ --pink-canvas: #5a2800;
+ --pink-img-bg: white;
+--pink-svg-pen: black;
+/* End of pink values */
+
+/* Dark Theme definitions */ 
+    --dark-bg: hsl(240, 100%, 30%);
+    --dark-fg: hsl(60, 100%, 80%);
+    --dark-canvas:hsl(70,65%,40%);
+--dark-dlg-bg: blue;
+    --dark-dlg-fg: white;
+    --dark-img-bg: hsl(240,50%, 60%);
+--dark-svg-pen: hsl(240,100%,75%);
+/* end of dark theme values*/
+
+    /*  Light Theme values */
+    --light-bg: lightgray;
+    --light-fg:#000080;
+    --light-canvas:yellow;
+    --light-dlg-bg: blue;
+    --light-dlg-fg: white;
+    --light-img-bg: white;
+--light-svg-pen: black;
+
+
+    /* Initial Theme settings/defines values */
+    --theme-bg: var(--pink-bg);
+    --theme-fg: var(--pink-fg);
+    --theme-canvas: VAR(--pink-canvas, yellow);
+    --theme-dlg-bg: var(--pink-dlg-bg, black);
+    --theme-dlg-fg: var( --pink-dlg-fg, white);
+    --theme-img-bg: var(--pink-img-bg);
+--theme-svg-pen: var(--pink-svg-pen);
+
+
+
+    
+    @media (prefers-color-scheme: dark) {
+    --theme-bg: var(--dark-bg);
+    --theme-fg: var(--dark-fg, yellow);
+    --theme-canvas: var(--dark-canvas);
+    --theme-dlg-fg:var(--dark-dlg-fg);
+    --theme-dlg-bg:var(--dark-dlg-bg);
+        --theme-img-bg: var(--dark-img-bg);
+--theme-svg-pen: var(--dark-svg-pen);
+    }
+    @media (prefers-color-scheme: light ) {
+    --theme-bg: var(--light-bg);
+    --theme-fg: var(--light-fg);
+    --theme-canvas: var(--light-canvas);
+    --theme-dlg-fg:var(--light-dlg-fg);
+    --theme-dlg-bg:var(--light-dlg-bg);
+        --theme-img-bg: var(--light-img-bg);
+--theme-svg-pen: var(--light-svg-pen);
+    }
+}

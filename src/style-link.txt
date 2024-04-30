@@ -1,0 +1,15 @@
+
+
+    // Routines that will locate the style link in the header.
+    // You can then replace it with your own css file.  Way to override via a Query parameter
+    //
+
+export function styleMe() {
+
+let styleLink =  document.getElementById("style-id");
+if (styleLink) {
+    // styleLink.setAttribute("href", "css/index-2c-ts.css");
+
+// } else displayStatus("No styleLink found");
+};
+};

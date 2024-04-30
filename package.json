@@ -1,0 +1,21 @@
+{
+  "name": "lewis",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/color": "^3.0.6",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.6"
+  },
+  "dependencies": {
+    "accessible-colors": "^1.0.5",
+    "color": "^4.2.3",
+    "node": "^18.20.0"
+  }
+}

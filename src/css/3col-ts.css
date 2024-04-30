@@ -1,0 +1,50 @@
+@media (min-width: 1600px){
+    .canvas{
+        width: 90%;
+    }    
+    .cards-container, #cards-container {
+        display: grid;
+        grid-template-columns:minMax( 450px, 800px)   minMax( 450px, 800px)   minMax( 450px, 800px)  ;
+        column-gap: 15px;
+        padding: 10px;
+    }
+    .card{
+        margin: 10PX;
+        padding: 12PX;
+    }
+    }
+    @media (max-width: 1599px) and (min-width: 900px){
+        .canvas{
+            width: 95%;
+            padding-left: 5px;
+            padding-right: 5px;
+        }    
+        .cards-container, #cards-container {
+            display: grid;
+            grid-template-columns:minMax( 450px, 700px)   minMax( 450px, 750)px;   
+            column-gap: 15px;
+        }
+        .card {
+            margin: 10PX;
+            padding: 10PX;
+        }
+          
+    }
+    @media (max-width: 899px) {
+        .canvas{
+            width: 100%;
+            padding-left: 5px;
+            padding-right: 5px;
+        }    
+        .cards-container, #cards-container {
+            display: grid;
+            place-content: center;
+        }
+        .card {
+            margin: 8PX;
+            padding: 4PX;
+        }
+    }
+    
+    
+    

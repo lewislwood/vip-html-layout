@@ -1,0 +1,214 @@
+.standard {
+    background: var(--theme-bg);
+    color: var(--theme-fg);
+}
+
+.hidden {
+    position: absolute;
+    top: 10px;
+    left: 10000px;
+    width: 1px;
+    height: 1px; 
+    overflow:hidden; 
+}
+.outer-container {
+    width: 100%;
+    display: grid;
+    place-items:center ;
+margin: 0;
+padding: 0;
+}
+.canvas{
+    display: grid;
+    justify-items: center;
+    width: 90%;
+    padding: 5px;
+    margin: 0;
+    background: var(--theme-canvas);
+}
+header{
+    width: 100%;
+    margin:0; 
+    margin-bottom: 10px;
+    padding: 10px;
+    display: grid;
+    place-content: center;
+}
+footer {
+        width: 100%;
+    margin:0; 
+    margin-top: 10px;
+    padding: 10px;
+    display: grid;
+    place-content: center;
+} 
+.banner {
+    font-weight: 700;
+    font-size: larger;
+}
+
+#theme-toggler {
+    font-weight: 300;
+    font-size:smaller   ;
+}
+font-weight:l  
+.sub-banner {
+    font-weight: 400;
+    font-size: large;
+}
+
+
+#lw-status-message {
+    padding-left: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-left: 10px;
+    margin-top: 0;
+    margin-bottom: 0;;;
+}
+
+.code-button {
+    padding: 3px;
+    margin: 3px;;
+    font-style: 0.8rem;
+}
+.main {
+    width: 100%;
+    padding-top: 8px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 8px;
+    margin: 5px;;
+    background: var(--theme-canvas, yellow);
+    display: grid;
+    place-items: center;
+}
+
+.top-section {
+    display: block;
+width: 1000px;
+margin: 12px;
+padding: 20px;
+}
+.card {
+    margin: 10px;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+
+#button-bar {
+    width: 600px;
+}
+.sm-dlg-hdr {
+    
+    margin-left: 8px;
+    padding-top: 8px;
+}
+.sm-dlg-grid-line {
+    width: 100%;
+    display: inline-block;
+    margin-left: 5px;
+    margin-top: 4px;
+    margin-bottom: 4px;;;;
+}
+.sm-inp-6 {
+    width: 6em;
+}
+.sm-inp-4 {
+    width: 4em;
+}
+.sm-dlg-ftr{
+ DISPLAY: FLEX;
+ justify-content: space-around ;   
+}
+
+#centerpoint {
+    top:50%;
+    left:50%;
+    position: fixed;
+}
+#sm-demo-dialog {
+    top: calc(100% - 34em);
+    left: calc(50% - 20em);
+    width: 40em;
+    height: 33em;
+    position: absolute;
+    border-style: double ;
+    border-width:5px ;
+    background: var(--theme-dlg-bg);
+    color: var(--theme-dlg-fg);
+}
+        .tm-edit-dialog {
+            display: block;
+            background: var(--theme-dlg-bg);
+            color:var(--them-dlg-fg);;
+            margin-left: 25px;
+            margin-right: 25px;
+            width: 20em;
+            border-style: double;
+            border-width: 2px;
+            top: 150px;
+            left: calc(100% - 22em);
+        }
+
+        .tm-dlg-hdr {
+            display:block;
+    clear:both;
+    width: 100%;
+            margin-left: 8px;
+            padding-top: 8px;
+            align-items: unset;;
+        }
+        #tm-form {
+            display: block;
+            width: 100%;
+            margin-top: 5PX;
+        }
+.tm-ratio-input  {
+    width: 3em;
+}
+        .tm-dlg-grid-line, .tm-color-pair {
+            width: 100%;
+            display: inline-block;
+            margin-left: 5px;
+            margin-top: 4px;
+            margin-bottom: 4px;
+            overflow: hidden;
+        }
+
+        .tm-dlg-ftr {
+            DISPLAY: FLEX;
+            justify-content: space-around;
+            margin-bottom: 5px;;
+        }
+        .tm-dlg-top-line {
+            width: 100%;
+            font-weight:300;
+            font-size: larger;;
+            border-top: 2px double;
+            border-bottom: 2px solid ;
+        }
+                .tm-color-swatch {
+            display: block;
+            border-color: var(--theme-dlg-fg);
+            border-style: solid;
+            border-width: 1px;;
+            width: 2em;
+            height: 1em;
+        }
+        .tm-color-mono {
+            display:grid;
+            width: 100%;
+            grid-template-columns:80% 18%  ;
+            padding-right: 8px;
+            margin-right: 8px;
+        }
+
+        .tm-color-container{
+            width: 100%;
+        }
+        
+        .rsr-links {
+            font-size: small;
+        }

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio test</title>
+</head>
+<body>
+    <style>
+        body  {
+            background: black;
+            color: white;
+        }
+    .outer-container {
+        width: 100%;
+        display: grid;
+        justify-items: center;
+    }    
+    .container {
+        display : grid;
+        width: 2400px;
+        grid-template-columns: 24% 24% 24% 24%;
+        padding:  12px;
+        background: #a0a0a9;
+        gap: 28px;
+        margin-top: 20%;
+                }
+.grid-item{
+   padding: 12px;
+   margin: 10px;
+   display:block; 
+   background: #000080;
+   color:yellow;
+}
+.ap-panel {
+    display: inline-block;
+}
+.ap-status {
+    border-style:solid ;
+}
+.ap-status-left {
+    border-right: none;
+}
+.ap-status-right {
+    border-left: none;
+}
+
+
+    </style>
+
+    <h1>Heloo Audio Tester</h1>
+    <p>
+        This html is for testing my Audio player
+    </p>
+
+    <div class="outer-container">
+        <div id="talk">
+            ...
+        </div>
+<div class="container">
+    <div class="grid-item">
+        <h2>Item 1</h2>
+        <audio src="./public/audio/welcome.mp3" id="ap1" preload="none"  title="flying monkeys" data-category="funny">
+        </audio>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium aut consectetur quo eum modi a voluptate distinctio minus. Repudiandae, incidunt quia voluptas at beatae similique numquam modi ipsum. Voluptas sapiente, laudantium velit labore dolorem aspernatur beatae harum laboriosam porro expedita. Nulla modi hic laborum, ut exercitationem accusamus ipsum aliquam voluptas?</p>
+    </div>
+    <div class="grid-item">
+        <h2>Item 2</h2>
+                <audio src="./public//audio/Part_3_Header.mp3" id="ap2" preload="none" >
+        </audio>
+
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur modi impedit odit iste! Illum doloribus nulla saepe vitae cum, tempore corporis eligendi minus quia numquam laboriosam cupiditate quasi placeat iste voluptates ipsum recusandae mollitia, optio fugiat repellendus! Quam quas et, quia quaerat culpa excepturi, qui, recusandae expedita dolor doloremque pariatur?</p>
+    </div>
+    <div class="grid-item">
+        <h2>Item 3</h2>
+        <audio src="./public/audio/Part_1_Intro_shortcuts_Describe_project.mp3" id="ap3" preload="none" >
+        </audio>
+
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, libero quaerat nihil id doloremque aut molestias obcaecati deleniti provident eos velit aliquam iure unde consequuntur architecto similique natus laborum atque eaque aliquid nesciunt corrupti blanditiis corporis? Alias, porro optio voluptates dolore nesciunt minima, ullam dolorem molestias consequatur voluptas cum. Voluptates.</p>
+    </div>
+    <div class="grid-item">
+        <h2>item 4</h2>
+                <audio src="./public/audio//Part_2_Outer_Canvas.mp3" id="ap4" preload="none" >
+        </audio>
+
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum vero hic error adipisci dolorem officiis. Ipsum vel fugiat voluptatem quisquam corrupti ab. Hic ipsam earum, blanditiis corporis nam quam iste voluptatem voluptas adipisci tempora corrupti distinctio alias nemo non necessitatibus suscipit dolor quis! Id doloribus cupiditate tempora, alias quam sapiente.</p>
+    </div>
+</div>
+
+    </div>
+
+    
+
+    
+
+    <script src="src/audio.ts" type="module" defer="true"></script>
+
+
+
+</body>
+</html>
