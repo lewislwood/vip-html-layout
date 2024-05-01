@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Designer</title>
+</head>
+<body>
+    <style>
+        body {
+            background: #000080;
+            color: yellow;
+        }
+        .outer-container {
+            width: 100%;
+            display:grid;
+            height: 100%;
+        }
+        .player-container {
+            display: grid;
+            width: 600px;
+            margin-top: 15%;
+            margin-left: 400px;
+            height: 250px;;
+            border: white double 2px;;
+            grid-template-columns: 12em auto ;
+            grid-gap: 0;
+        }
+        .playlist-container {
+            display: block;
+            background: orange;
+            font-size: small;
+            margin: 0;
+            padding: 5px;
+            height: 100%;
+            width: 12em;
+        }
+        .player-controls-container {
+            display: block;
+            margin:  0;
+            padding:  0;
+        }
+        .player-status {
+            display: block;
+            margin:  0;
+            padding:  0;
+            width: calc( 100% - 25px);
+            height: 3em;
+            background: hsl(240, 80%, 70%);
+        }
+        .player-position {
+            display:block;
+            float: right;
+            align-self: flex-start;
+            width: 20px;
+            height: 100%;
+            margin:  0;
+            padding: 0;
+            background: hsl(120, 100%, 60%);
+        }
+        .player-main {
+            display: grid;
+            width: calc(100% - 25px);
+            height: 7em;
+            margin-top: 10px;
+            margin-left: 0;
+margin-right: 3px;
+            padding:  0;
+            grid-template-columns: 1fr 1fr 1fr;  ;
+            grid-gap: 5px;;
+            background: hsl(120,85%, 30%);
+        }
+        .panel-container {
+            display: block;
+            background: hsl(270,65%, 80%);
+            width: 20px;
+            height: 20px;
+            margin: 3px;
+            padding: 0;
+        }
+        .player-footer {
+            display: block;
+            margin-top: 10px;
+            padding:  0;
+margin-left: 0;
+margin-right: 0;
+width: calc(100% - 25px);
+height: 30px;
+background: white;
+        }
+    </style>
+     <h1>Audio Player Designer HTML</h1>
+     <div class="outer-container">
+        <div class="player-container">
+            <div class="playlist-container">
+playlist goes here..
+            </div>
+            <div class="player-controls-container">
+<div class="player-position">
+    (1)<br />(2)<br />(3)
+</div>
+
+<div class="player-status">
+    Status information goes here.
+</div>
+
+<div class="player-main">
+    <div class="panel-container">C</div>
+    <div class="panel-container">C</div>
+    <div class="panel-container">C</div>
+    <div class="panel-container">C</div>
+    <div class="panel-container">C</div>
+    <div class="panel-container">C</div>
+</div> 
+<div class="player-footer">
+    footer stuff here
+</div>
+
+
+
+
+
+            </div>
+
+        </div>
+     </div>
+
+</body>
+</html>
