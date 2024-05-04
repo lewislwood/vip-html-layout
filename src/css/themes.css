@@ -23,13 +23,13 @@
 /* End of pink values */
 
 /* Dark Theme definitions */ 
-    --dark-bg: hsl(240, 100%, 30%);
+    --dark-bg: hsl(240, 100%, 25%);
     --dark-fg: hsl(60, 100%, 80%);
     --dark-canvas:hsl(70,65%,40%);
 --dark-dlg-bg: blue;
     --dark-dlg-fg: white;
     --dark-img-bg: hsl(240,50%, 60%);
---dark-svg-pen: hsl(240,100%,75%);
+--dark-svg-pen: hsl(200,85%,85%);
 /* end of dark theme values*/
 
     /*  Light Theme values */

@@ -14,12 +14,18 @@
     <div class="outer-container standard">
         <div class="canvas">
             <header class="standard">
+                <div class="banner-container">
+                    <div class="pg-logo-container">
+                    </div>
                 <div class="banner">
-                    Web Page Layout/Template/Tutorial
-                </div>
+                    Page Layout/Tutorial
                 <div class="sub-banner">
-                    by Lewis L Wood
+Heart of a Lion
                 </div>
+                </div>
+                </div>
+
+
             </header>
                 <div class="top-section standard"  role="region" title="top section">
                     <h1 id="main-heading" tabindex="0">Web Page Template Resource</h1>
@@ -38,7 +44,7 @@
                     <div id="Walk-card-section" class="card standard">
                         <h2>Walk Through Creating an HTML Web Page</h2>
                         <a href="/designer/walk_through.html" target="__blank">View the finished Walk Through Web Page</a> we will create together.
-                        <details>
+                        <details name="dev-card">
                             <summary>
                                 Tutorials where I use vs Code to create a web page
                                 
@@ -115,7 +121,7 @@
                             </ol>
                         </details>
 
-                        <details  >
+                        <details   name="">
                             <summary>
                                 <b>Written Walk Through Overview</b>
                                 
@@ -158,7 +164,7 @@
                         <h2 >HTML & Css Considerations</h2>
                                     <audio src="/audio/html_css_discussion.mp3" preload="none" title="Html & Css Considerations" data-category="walkThrough"></audio>
 
-                        <details>
+                        <details name="dev-card">
                             <summary>
                                 This section Here is Css from my blind perspective. Prvides  some helpful ways to think of it from a fully blind perspective..
                             </summary>
@@ -231,7 +237,7 @@
                                     <audio src="/audio/theme_manager.mp3" preload="none" title="Themes & Manager" data-category="walkThrough"></audio>
 
 
-<details>
+<details name="dev-card">
     <summary>
         Click here to view some of the theme discussion I have written down.
     </summary>
@@ -343,7 +349,7 @@
 
 </p>
                                     <audio src="/audio/svg_walk_through.mp3" preload="none" title="Themes & Manager" data-category="walkThrough"></audio>
-<details>
+<details name="dev-card">
     <summary>
         <p>
             Listen to the audio above and read on how learning to customizing and importing svg's can be truly useful.
@@ -394,7 +400,7 @@ In the svg walk through, I pull in the svg code from the dog file listed above (
                                     <audio src="/audio/status_message_manager.mp3" preload="none" title="Themes & Manager" data-category="walkThrough"></audio>
 
                     <button id="sm-demo-button" alt="demo various ways status messages can sound">Status message demo</button>
-<details>
+<details name="dev-card">
     <summary>
         Status messages for sighted and Visually Impaired as well. Click here for details
     </summary>
@@ -441,89 +447,146 @@ In the svg walk through, I pull in the svg code from the dog file listed above (
 
 <div id="dev-card" class="card standard">
     <h2>Development How to ...</h2>
-                                    <audio src="./public/audio/developer_clone.mp3" preload="none" title="Developer Clone Instructions"
-                                        data-category="developer"></audio>
+    <b><em>Clone Repository</em></b>
+    <audio src="/audio/developer_clone.mp3" preload="none" title="Developer Clone Instructions"
+        data-category="developer"></audio>
+    <b><em>Create Vite project Walk Through</em></b>
+    <audio src="/audio/developer_vite.mp3" preload="none" title="Developer Clone Instructions"
+        data-category="developer"></audio>
 
-    <details>
+                                        <details name="dev-card">
+                                            <summary>
+                                                Developer Guide/Insights
+                                            </summary>
+                                            <p>
+                                                Below you will find a handfull of practices in coding standards worth noting. About the Vite Front End
+                                                Development environment. Then finally my Designers a list of html files that I used to stage and pre-plan my
+                                                layouts.
+                                                </p>
+    <details name="dev-sub-card">
         <summary>
-            Organizational pricincipals, and consistencies.
+                Organizational pricincipals, and consistencies.
         </summary>
         <p>
-        I use TypeScript and it forces me to be consistent in my coding. 
-        More than I have in the past.
-        All variables are camel cased, as in camelCased="somethingg".
-        All types and classes  are pascal cased. Where all words are capitalized, including the first word.
-        This makes it easier to know what is what. 
-    </p>
-    <p>
-        Any function used in a location farther  than 10 lines must be very descriptive.
-        This way you know exactly what the variables. 
-        Do not worry auto complete will help to complete the  will help you spell it write and cases. 
-        Even though you typed it press the tab key to auto complete, that has corrected me. 
-    </p>
-    <p>
-        JavaScript is very limited by itself. 
-        It becomes to manage or keep together. 
-        TypeScript extends the reach of JavaScript with accuracy and compile time debugging. 
-        This will allow to you to get creative and be organized.
-    </p>
-    <p>
-        TypeScript really forced consistency and declaring the use of my code at design time.
-        Eventually you will hit the cost ratio/maintenance, to complexity and security.
-        When I hit it on the browser side I eventually gave up on a pure TypeScript to JavaScript as my projects in the past. 
-        I found out many others did as well. 
-        Thant meant a development server based environment.
-        So the search began... Must be easy to use and begginners can pick it up quickly.
-        I landed on Vitejs...
-    </p>
-    </details>
-<details>
-    <summary>
-        Vitejs Development Environment
-    </summary>
-<p>
-    ViteJs is a server development environment for front end applications. 
-    It is similar to web pack and some others. It converts the javascript to an optimized format, modular, and complies with browser security.
-    It automatically recompiles and brings up the server and refreshes the part of the page that changed.
-    Sighted really love it. vs Code on one side of screen and the browser on the other. 
-    Modify css/html/js/Ts and changes show up immediately automatically.
-    </p>
-    <p>
-        We blind folks  will benefit since the connection to javaconsole is easier and automatic.
-You will see in my project I have create a launch file for debugging.
-If you are not doing any real debugging, simply type letter "o" followed by enter to launch in browser.
-    </p>
-    <p>
-        I found out real quick that Vite is extremely picky about the html. Found many errors. Unclosed structures and unclosed quotes.
-            </p>
-            <p>
-                Just type npm run dev in the terminal to start the server. Help is displayed.
-            </p>
-</details>
-<details>
-    <summary>
-        Designers
-    </summary>
-    <p>
-        I created a designer folder, where I kept my designer.html files.
-These are the html files I used to design the individual dialogs and various tests. Even on just with a bunch of svg's where I pulled out there c xml and made them utilizes classes.
-I even laid out general containers the step prior to controls. 
-When ready simply fold the code and input it into the appropiate place with htmlElement.innerhtml = `folded code`.
-Below you will find a list of them.
-    </p>
-    <ul class="rsr-links">
-        <li><a href="/designers/sm-demo.html" target="_blank">Status Message Dialog</a></li>
-        <li><a href="/designers/tm-edit.html" target="_blank">Theme Editor Dialog</a></li>
-        <li><a href="/designers/player.html" target="_blank">Future Audio Player Dialog</a></li>
-        <li><a href="./public/designers/player-layout.html" target="_blank">Future Audio Player General Layout</a></li>
+            I use TypeScript and it forces me to be consistent in my coding.
+            More than I have in the past.
+            All variables are camel cased, as in camelCased="somethingg".
+            All types and classes are pascal cased. Where all words are capitalized, including the first word.
+            This makes it easier to know what is what.
+        </p>
+        <p>
+            Any function used in a location farther than 10 lines must be very descriptive.
+            This way you know exactly what the variables.
+            Do not worry auto complete will help to complete the will help you spell it write and cases.
+            Even though you typed it press the tab key to auto complete, that has corrected me.
+        </p>
+        <p>
+            JavaScript is very limited by itself.
+            It becomes to manage or keep together.
+            TypeScript extends the reach of JavaScript with accuracy and compile time debugging.
+            This will allow to you to get creative and be organized.
+        </p>
+        <p>
+            TypeScript really forced consistency and declaring the use of my code at design time.
+            Eventually you will hit the cost ratio/maintenance, to complexity and security.
+            When I hit it on the browser side I eventually gave up on a pure TypeScript to JavaScript as my projects in
+            the past.
+            I found out many others did as well.
+            Thant meant a development server based environment.
+            So the search began... Must be easy to use and begginners can pick it up quickly.
+            I landed on Vite...
+        </p>
+    </details>                                            
+                                        <details name="dev-sub-card">
+                                            <summary>
+                                                Vitejs Development Environment
+                                            </summary>
+                                            <p>
+                                                Vite is a server development environment for front end applications.
+                                                It is similar to web pack and some others. It converts the javascript to an optimized format, modular, and
+                                                complies with browser security.
+                                                It automatically recompiles and brings up the server and refreshes the part of the page that changed.
+                                                Sighted really love it. vs Code on one side of screen and the browser on the other.
+                                                Modify css/html/js/Ts and changes show up immediately automatically.
+                                            </p>
+                                            <p>
+                                                You can clone the repository with the following command
+                                                <code>git clone http://github.com/lewislwood/vip-html-layout</code>
+                                                Paste the above command at your command line in the parent folder you desire the cloned repository to be
+                                                created.
+                                                If you do not currently have git installed, then you can download the repository at the following
+                                                <a href="https://github.com/lewislwood/vip-html-layout/archive/refs/heads/main.zip" download>link</a>.
+                                            </p>
+                                            <p>
+                                                Navigate to cloned folder or unpacked folder. Type in the following to install (You will need Nodejs
+                                                installed.)
+                                                <code>npm install</code>
+                                                Paste or type the above command at the command line. Once installed.
+                                                Start vs code and in terminal type <code>npm run dev</code>
+                                                Now you are running the server and ready to debug or view in browser only. Follow the prompt in the terminal
+                                                instructions or press "f5" to debug. I alredy have created a launch json file .
+                                            </p>
+                                            <p>
+                                                We blind folks will benefit since the connection to javaconsole is easier and automatic.
+                                                You will see in my project I have create a launch file for debugging.
+                                                If you are not doing any real debugging, simply type letter "o" followed by enter to launch in browser.
+                                            </p>
+                                            <p>
+                                                I found out real quick that Vite is extremely picky about the html. Found many errors. Unclosed structures
+                                                and unclosed quotes.
+                                            </p>
+                                            <p>
+                                                You can create your project by typing the following command or pasting it at the command line.
+                                                <code>npm create vite@latest</code>
+                                                I prefer to already have the folder created and navigate inside it and then pasting the above command
+                                                followed by a space and a period (the period represents current folder ).
+                                                It will then create the project in the current folder and I can run it just as the clone command.
+                                                <code>npm run dev</code>
+                                            </p>
+                                            <p>
+                                                You can build the project for production with the following command.
+                                                <code>npm run build</code>
+                                                This will create a "dist" folder. If you wish to make the project into a github page, simply rename the
+                                                "dist" folder to "docs".
+                                                Then set the branch and folder to "docs" folder.
+                                        
+                                            </p>
+                                            <p>
+                                                Happy coding.
+                                            </p>
+                                        </details>
+                                        
+                                        <details name="dev-sub-card">
+                                            <summary>
+                                                Designers
+                                            </summary>
+                                            <p>
+                                                I created a designer folder, where I kept my designer.html files.
+                                                These are the html files I used to design the individual dialogs and various tests. Even on just with a
+                                                bunch of svg's where I pulled out there xml and made them utilizes css classes.
+                                                I even laid out general containers the step prior to controls.
+                                                When ready simply fold the code and input it into the appropiate place with htmlElement.innerhtml = `folded
+                                                code`.
+                                                Below you will find a list of them.
+                                            </p>
+                                            <ul class="rsr-links">
+                                                <li><a href="/designers/sm-demo.html" target="_blank">Status Message Dialog</a></li>
+                                                <li><a href="/designers/tm-edit.html" target="_blank">Theme Editor Dialog</a></li>
+                                                <li><a href="/designers/player.html" target="_blank">Future Audio Player Dialog</a></li>
+                                                <li><a href="./public/designers/player-layout.html" target="_blank">Future Audio Player General Layout</a>
+                                                </li>
+                                                <li><a href="/designers/svg-test.html" target="_blank">My SVG Customizer</a></li>
+                                                <li><a href="./public/designers/walk_through.html" target="_blank">HTML Walk Through</a></li>
+                                                <li><a href="designers/svg_walk_through.html" target="_blank">SVG Custom walk through</a></li>
+                                        
+                                            </ul>
+                                        </details>
+                                        
+                                        
+                                        
+                                        
+                                        </details>
 
-        <li><a href="/designers/svg-test.html" target="_blank">My SVG Customizer</a></li>
-        <li><a href="./public/designers/walk_through.html" target="_blank">HTML Walk Through</a></li>
-        <li><a href="designers/svg_walk_through.html" target="_blank">SVG Custom walk through</a></li>
-
-    </ul>
-</details>
-<code>npm create vite@latest</code>
 <h4>Developer Resources</h4>
 <ul>
     <li><a href="https://vitejs.dev/guide/" target="_blank">Vite Getting Started</a></li>
@@ -534,12 +597,24 @@ Below you will find a list of them.
                 </div>
 
             <footer class="standard">
-            <span>The footer area</span>
-
-                <div id="button-bar">
-                </div>
-                <div class="sub-banner">
-                    Powered by Lewis L Wood
+                <div class="footer-container">
+                
+                
+                
+                    <div id="co-logo-container">
+                    </div>
+                    <div class="powered">
+                    
+                    
+                    <div class="footer-word">
+                        Powered by Lewis L Wood
+                    </div>
+                    <div class="banner-subsub">
+                        Heart of a Lion
+                    </div>
+                    </div>
+                    
+                
                 </div>
             </footer>
 

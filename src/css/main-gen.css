@@ -42,7 +42,15 @@ footer {
     display: grid;
     place-content: center;
 } 
+.banner-container {
+    display: grid;
+    width: min(100%, 1000px); 
+    gap: 10px;
+    grid-template-columns: 20% 70%;
+}
 .banner {
+    display: block;
+    width: 100%;
     font-weight: 700;
     font-size: larger;
 }
@@ -212,3 +220,63 @@ padding: 20px;
         .rsr-links {
             font-size: small;
         }
+.co-logo-size {
+    height:200px;
+    width: 200px;
+}
+.co-logo-fill {
+    fill: var(--theme-svg-pen);
+}
+.heart-beat {
+    animation: heart-pulse 5s infinite 5s;
+}
+@keyframes heart-pulse {
+    0% {
+        width: 100%;
+    }
+    55% {
+        width: 75%;
+    }
+    70% {
+        width: 60%;
+    }
+    80% {
+        width: 57%;
+    }
+    90% {
+        width: 88%;
+        }
+        100% {
+            width: 100%;
+        }
+    }
+    .footer-container {
+        display:grid;
+        width: min( 100%, 1000px);
+        padding: 8px;
+        gap: 10px;
+        grid-template-columns: 20% 65%;
+    }
+    .powered {
+        width: 100%;
+        font-size:10pt; 
+        font-style: normal;
+        font-weight: 400%;
+        margin: 0;
+        padding: 0;
+    }
+    .banner-subsub {
+        width: 100%;
+        font-size: large;
+        font-style: italic;
+        font-weight: 500%;
+    }
+    .footer-word  {
+        display: block;
+        width: 100%;
+        font-size:10PT;
+        padding: 0;
+        margin: 0;
+    }
+
+
