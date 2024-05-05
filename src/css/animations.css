@@ -1,0 +1,23 @@
+.heart-beat {
+    animation: heart-pulse 4s 5 4s;
+}
+@keyframes heart-pulse {
+    0% {
+        width: 100%;
+    }
+    55% {
+        width: 75%;
+    }
+    70% {
+        width: 60%;
+    }
+    80% {
+        width: 57%;
+    }
+    90% {
+        width: 88%;
+        }
+        100% {
+            width: 100%;
+        }
+    }

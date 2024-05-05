@@ -202,6 +202,52 @@ if (! ap.audio.paused) {
         ap.audio.play();
 }
 } // playPause
+
+public playPauseCurrent() {
+    const ap = this.currentPanel;
+    if ( ap) this.playPause(ap);
+} // playPauseCurrent
+
+public async jump( seconds: number) {
+    const ap = this.currentPanel;
+if (ap) {
+    const a:HTMLAudioElement= ap.audio;
+    const cur = (a.currentTime + seconds);
+    if (cur < 0) a.currentTime = 0
+    else if (cur > a.duration) a.currentTime = a.duration
+    else a.currentTime = cur;
+}
+} // jump
+public async goTo( percentage: number) {
+    const ap = this.currentPanel;
+if ((ap)&& ((percentage < 100) && (percentage >= 0))) {
+    const aud:HTMLAudioElement = ap.audio;
+    const p = ((percentage < 10)? percentage * 10 : percentage) / 100;
+    const newPos = (p * aud.duration)
+    aud.currentTime = Math.floor(newPos);
+}
+
+} //goTo()
+public async playBackRate(change: number) {
+    const ap = this.currentPanel;
+if (ap) {
+const aud = ap.audio;
+    const cur = aud.playbackRate + change;
+    if ((cur >= 0.25) && ( cur <= 4))  aud.playbackRate = cur;
+}
+} // playBackRate
+public async volumeChange( change: number) {
+    const ap = this.currentPanel;
+if (ap) {
+    const aud:HTMLAudioElement = ap.audio;
+const newVol = aud.volume + change;
+if ((newVol >= 0) && (newVol <= 1)) aud.volume = newVol;
+}
+}  // volumeChange
+
+
+
+
 private secondsToString(sec:number): string {
     const time: string[]  = [];
     let s = sec;

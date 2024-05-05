@@ -24,6 +24,7 @@ padding: 0;
     width: 90%;
     padding: 5px;
     margin: 0;
+    padding: 0;;
     background: var(--theme-canvas);
 }
 header{
@@ -34,14 +35,6 @@ header{
     display: grid;
     place-content: center;
 }
-footer {
-        width: 100%;
-    margin:0; 
-    margin-top: 10px;
-    padding: 10px;
-    display: grid;
-    place-content: center;
-} 
 .banner-container {
     display: grid;
     width: min(100%, 1000px); 
@@ -227,56 +220,59 @@ padding: 20px;
 .co-logo-fill {
     fill: var(--theme-svg-pen);
 }
-.heart-beat {
-    animation: heart-pulse 5s infinite 5s;
-}
-@keyframes heart-pulse {
-    0% {
+
+            footer {
         width: 100%;
-    }
-    55% {
-        width: 75%;
-    }
-    70% {
-        width: 60%;
-    }
-    80% {
-        width: 57%;
-    }
-    90% {
-        width: 88%;
-        }
-        100% {
-            width: 100%;
-        }
-    }
+    margin:0; 
+    margin-top: 10px;
+    padding: 10px;
+    display: grid;
+justify-items: center;
+} 
     .footer-container {
         display:grid;
         width: min( 100%, 1000px);
-        padding: 8px;
-        gap: 10px;
-        grid-template-columns: 20% 65%;
-    }
-    .powered {
-        width: 100%;
-        font-size:10pt; 
-        font-style: normal;
-        font-weight: 400%;
         margin: 0;
         padding: 0;
+        gap: 10px;
+        grid-template-columns: 25% 65%;
     }
-    .banner-subsub {
+#co-logo {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    margin: 0;
+    padding: 0  ;
+}
+    .powered {
+        display: flexbox;
         width: 100%;
-        font-size: large;
-        font-style: italic;
-        font-weight: 500%;
+        margin: 0;
+        padding: 0;
+        align-content: center;
+        align-items: center;
     }
-    .footer-word  {
+    .footer-words {
         display: block;
         width: 100%;
-        font-size:10PT;
+        padding: 0  ;
+        margin: 0;
+        height: 2.2em;
+    }  
+    .powered-heading {
+        display: block;
+        width: 100%;
+        font-size:x-large;
+        font-weight: 5  ;
         padding: 0;
         margin: 0;
     }
-
-
+    .banner-subsub {
+        display: block;
+        width: 100%;
+        font-size: x-large;
+        font-style: italic;
+        font-weight: 200%;
+        margin: 0;
+        padding:0 ;
+    }

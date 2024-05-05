@@ -1,5 +1,6 @@
 import "./css/themes.css";
 import "./css/main-gen.css";
+import "./css/animations.css";
 import "./css/lwap.css";
 import "./css/3col-ts.css";
 import { getLionFace } from "./svgs";
@@ -123,12 +124,12 @@ const setUpSM = async () => {
 } // setUpSM 
 
 const getSVGs = async () => {
-let lion = await getLionFace({css: [ "co-logo-fill"]})
+    let lion = await getLionFace({ css: ["co-logo-fill", "heart-beat"],ariaLabel:"Lion beating heart animation"})
 const coLogoContainer = document.querySelector<HTMLDivElement>(`#co-logo-container`);
 if (coLogoContainer) coLogoContainer.appendChild(lion);
     const pgLogo = document.querySelector(`.pg-logo-container`);
     if (pgLogo) {
-        let lion = await getLionFace({ css: ["co-logo-fill", "heart-beat"] });
+        let lion = await getLionFace({ css: ["co-logo-fill", "heart-beat"], ariaLabel: "Lion beating heart animation" });
         pgLogo.appendChild(lion);
     }
 
