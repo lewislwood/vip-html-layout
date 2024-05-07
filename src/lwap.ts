@@ -1,5 +1,13 @@
 "use strict";
+import { KH_Key, initKH } from "./lwkh";
 
+export type KeyHandlers = {
+    goTo: KH_Key[];
+    playPause?: KH_Key;
+    jump: {foward?: KH_Key, back?:KH_Key};
+    rate: {faster?: KH_Key, slower?:KH_Key};
+    volume: {up?:KH_Key, down?: KH_Key};
+}
 
 
 
@@ -21,7 +29,7 @@ type ControlHtml = {
 
 export class LwAP {
     private audioPanels: AudioPanel  [] = [];
-    private _index = -1;
+    private _currentPanel?:AudioPanel;
     private html:ControlHtml = {
         play: `<svg name="control-pause" role="img" aria-label="pause button"  
     class="lwap-main-sz" viewBox="0 0 16 16">
@@ -36,6 +44,7 @@ pause: `
         d="M6 10.117V5.883a.5.5 0 0 1 .757-.429l3.528 2.117a.5.5 0 0 1 0 .858l-3.528 2.117a.5.5 0 0 1-.757-.43z" />
 </svg>`
     }
+    private _keys: KeyHandlers[] = [];  // array of key handlers Alt sets
     constructor() {
 window.addEventListener("load", ()=>{ this.loadControls()});
     }// constructor
@@ -67,19 +76,11 @@ if ((filterBy !== "all") && (filterBy)) {
 
 
     public get currentPanel():AudioPanel | undefined {
-        if (this._index < 0) {
-            if (this.audioPanels.length > 0) this._index = 0
-            else return undefined;
-        }
-        return this.audioPanels[this._index];
+        return this._currentPanel;
     } // get currentPanel
 
     public set currentPanel( ap:AudioPanel  | undefined) {
-        if (ap !== undefined) {
-        // validates that it is in the list and adds if not and sets the index property
-    this.addAudioPanel( ap); 
-    this._index = ap.index;
-        }
+        this._currentPanel = ap;
 
     } // set currentPanel
 
@@ -191,6 +192,7 @@ if (title) ap.title = title;
 
 
 private async playPause(ap:AudioPanel) {
+    this._currentPanel= ap;
     const btn = ap.panel.querySelector<HTMLButtonElement>(`[name="ap-btn-play"]`)!;
 if (! ap.audio.paused) {
     // Now pause the media
@@ -199,6 +201,7 @@ if (! ap.audio.paused) {
 }else {
     this.stopAll(ap);
         btn.innerHTML = this.html.play;
+        this._currentPanel = ap;
         ap.audio.play();
 }
 } // playPause
@@ -277,7 +280,75 @@ if ((mode === "%") || ( mode === "%time")) {
 if ((mode === "%time") || (mode === "time"))    stat.push(`${this.secondsToString(pos)} Of `);
 return stat.join(" "); 
     } // positionAs String
+
+    public  get keys():KeyHandlers[] {
+        return this._keys;
+    } // get keys
+
+    private blankKeys():KeyHandlers {
+        return {
+            goTo: [],
+            jump: {},
+            rate: {},
+            volume: {}
+        };
+    } // blankKeys
+
+    //  Clears all keys and generates a fresh set of key mappings
+    public async generateKeys() {
+this._keys = [this.blankKeys(), this.blankKeys()];
+const pKeys = this.keys[0], aKeys = this.keys[1];
+        const hk = initKH();
+const khGet = (alt: boolean, key:string,prefix: string, desc: string, action:Function):KH_Key  => {
+    return { ...hk.newKeyBlank, altKey: alt, shiftKey: alt, key, name: `${prefix}-${key}${(alt)?"-alt":""}`, desc, action}
+} 
+// goTo section
+for (let k = 0;k<10;k++) {
+   pKeys.goTo.push(  khGet(false,`${k}`,"ap-goto",`Goto ${k}%`,()=>{ this.goTo(k)}) );
+}
+// Jump has screen reader friendly keys as well
+        pKeys.jump.foward= khGet(false, `l`, "ap-jump-f","Jump foward 15s",() => { this.jump(15) });
+        pKeys.jump.back = khGet(false, `j`, "ap-jump-b", "Jump back 15s", () => { this.jump(-15) });
+aKeys.jump.foward = khGet(true, `L`, "ap-jump-f", "Jump foward 15s", () => { this.jump(15) });
+        aKeys.jump.back= khGet(true, `J`, "ap-jump-b", "Jump back 15s", () => { this.jump(-15) });
+
+        // playPause with screen reader keys
+        aKeys.playPause = khGet(true, "K", "ap-play", "Play/pause", () => { this.playPauseCurrent() });
+        pKeys.playPause = khGet(false, `k`, "ap-play", "Play/pause", () => { this.playPauseCurrent()});
+// rate
+        pKeys.rate.slower = {...khGet(false, `<`, "ap-rate-s", "Playback rate slower", () => { this.playBackRate(-0.25)}),shiftKey:true} ;
+        pKeys.rate.faster = {...khGet(false, `>`, "ap-jump-f", "Playback rate faster", () => { this.playBackRate(0.25) }), shiftKey:true};
+
+        aKeys.rate.slower = { ...khGet(true, `<`, "ap-rate-s", "Playback rate slower", () => { this.playBackRate(-0.25) }), shiftKey: true };
+        aKeys.rate.faster = { ...khGet(true, `>`, "ap-jump-f", "Playback rate faster", () => { this.playBackRate(0.25) }), shiftKey: true };
+        // volume
+        pKeys.volume.up = {...khGet(false, `V`, "ap-vol-u", "Volume up", () => { this.volumeChange(0.1) }), shiftKey:true};
+        pKeys.volume.down = {...khGet(false, `v`, "ap-vol-d", "Volume down", () => { this.volumeChange(-0.1) }), shiftKey:false};
+    } // generateKeys
     
+    public async enableKeyHandling() {
+        const kh = initKH();
+        // kh.addKeyTest(this.keys[1].playPause!)
+        // return;
+
+        const keys = this.getKeyList();
+
+
+        keys.forEach((k) => { kh.addKeyTest(k) });
+
+    } // enableKeyHandling    
+
+    private getKeyList():KH_Key[] {
+        const pKeys = this.keys[0], aKeys = this.keys[1];
+const keys = [ ...pKeys.goTo, ...aKeys.goTo];
+const addKey = (k?:KH_Key)=>{if (k) keys.push(k)};
+        addKey(pKeys.jump.back); addKey(pKeys.jump.foward); addKey(aKeys.jump.back); addKey(aKeys.jump.foward);
+    addKey(pKeys.playPause); addKey(aKeys.playPause);
+        addKey(pKeys.volume.up); addKey(pKeys.volume.down); addKey(aKeys.volume.up); addKey(aKeys.volume.down);
+        addKey(pKeys.rate.faster); addKey(pKeys.rate.slower); addKey(aKeys.rate.faster); addKey(aKeys.rate.slower);
+return keys;
+    } // getKeyList
+
 } // class lwAP
 
 let lwAP: LwAP ;

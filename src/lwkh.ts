@@ -13,13 +13,14 @@ export type KH_Key = {
     key:string ; 
     altKey: boolean; ctrlKey: boolean; shiftKey: boolean;
      metaKey: boolean; test: number; action?: Function; desc?: string ;
+     category?: string;
     };
 
 
 class LwKeyHandler {
     private keyEnums = { altKey: 2, ctrlKey: 4, metaKey: 8, shiftKey: 16 }
-    private _keyBlank: KH_Key = { name: "un-named", key: "", altKey: false, ctrlKey: false, shiftKey: false, metaKey: false, test: 0, desc: "" };
-    private keyTesters: KH_Key []= [];
+    private _keyBlank: KH_Key = { name: "un-named", key: "", altKey: false, ctrlKey: false, shiftKey: false, metaKey: false, test: 0, desc: "", category: "general" };
+    public keyTesters: KH_Key []= [];
     //@ts-ignore
     private _sayIt:Function = (message:string) =>{ const v = 0}; // Otherwords do nothing
     constructor(
@@ -72,7 +73,6 @@ else this._logIt = (message:string) => console.log(message);
         kt.test = -1;
         if (kt.key) {
             kt.test = this.getKeyTest(kt);
-            kt.key = (kt.shiftKey) ? kt.key.toUpperCase() : kt.key.toLowerCase();
         };
         const index = this.keyTesters.findIndex((k) => { return (k.name === kt.name); });
         if (index > -1) this.keyTesters[index] = kt
@@ -85,14 +85,14 @@ else this._logIt = (message:string) => console.log(message);
         const eTest = this.getKeyTest(ev), kt = this.keyTesters;
         let handled = false;
         try {
-
+            // if (eTest === 18) this.sayIt(`Testing key ${ev.key}  test:${eTest}`);
             for (let iKey = 0; iKey < kt.length; iKey++) {
                 const k = kt[iKey];
 
                 if (k.test > -1) {
                     if ((k.test === eTest) && (k.key === ev.key)) {
                         handled = true;
-                        this.sayIt(`Handling key ${k.name}`);
+                        // this.sayIt(`Handling key ${k.name}`);
                         if (k.action) k.action(ev);
                     };
                 }; // if kt > -1

@@ -4,14 +4,10 @@ import "./css/animations.css";
 import "./css/lwap.css";
 import "./css/3col-ts.css";
 import { getLionFace } from "./svgs";
-
-
-
-
-
 import { initKH, KH_Key } from "./lwkh"; 
 import { initAP, LwAP } from "./lwap";
 import { initTM, ThemeManager } from "./tm";
+import {LwHelp} from "./lw-help";
 
 // Comment out both imports for no status management, Only 1 status management to uncomment (1 with demo support and lighter version without demo)
 // import { initSM, LwStatus, isStatusDefined } from "./lwStatus";
@@ -32,6 +28,7 @@ let sm: SM_Override = {
 let statusMessage: HTMLElement = document.getElementById(`lw-status-message`)!;
 //@ts-ignore
 let tm: ThemeManager, ap: LwAP , kh = initKH();
+let help:LwHelp;
 
 
 // Displays a status message for a specified time in milliseconds, replaces current default or appends.
@@ -123,6 +120,15 @@ const setUpSM = async () => {
 
 } // setUpSM 
 
+const enableAPKeys = async () => {
+
+await ap.generateKeys();    
+kh.sayIt = (msg:string)=>{sm.alert(msg);};
+    ap.enableKeyHandling();
+}
+
+
+
 const getSVGs = async () => {
     let lion = await getLionFace({ css: ["co-logo-fill", "heart-beat"],ariaLabel:"Lion beating heart animation"})
 const coLogoContainer = document.querySelector<HTMLDivElement>(`#co-logo-container`);
@@ -144,7 +150,7 @@ const setUpThemeMgr = async ()=>{
     // kh.sayIt = (m:string)=>{ sm.polite(m);};
     
     let kb: KH_Key = kh.newKeyBlank;
-    kb = { ... kb, name: "Next Theme", desc: "Toggles to the next Theme", altKey:true, shiftKey:true, key:"c", action:tg};
+    kb = { ... kb, name: "Next Theme", desc: "Toggle to next Theme", altKey:true, shiftKey:true, key:"C", action:tg};
     kh.addKeyTest(kb);
 
     const tme = <HTMLButtonElement>document.getElementById("tm-editor-btn")!;
@@ -172,8 +178,15 @@ const wireUp = async () => {
     await setUpSM();
 await setUpThemeMgr ();
 ap = await initAP();
+
 getSVGs();
+
     kh.start();
+    enableAPKeys();
+help = new LwHelp();
+    let kb: KH_Key = { ...kh.newKeyBlank, name: "Help me", desc: "f1 Help", altKey: true, shiftKey: true, key: "?", action: ()=>{help.showHelp()}};
+    kh.addKeyTest(kb);
+
 } // wireUp()
 
 
