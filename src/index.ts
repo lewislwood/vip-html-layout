@@ -3,7 +3,7 @@ import "./css/main-gen.css";
 import "./css/animations.css";
 import "./css/lwap.css";
 import "./css/3col-ts.css";
-import { getLionFace } from "./svgs";
+import { getLionFace , getQuestionMark} from "./svgs";
 import { initKH, KH_Key } from "./lwkh"; 
 import { initAP, LwAP } from "./lwap";
 import { initTM, ThemeManager } from "./tm";
@@ -131,11 +131,26 @@ kh.sayIt = (msg:string)=>{sm.alert(msg);};
 
 const getSVGs = async () => {
     let lion = await getLionFace({ css: ["co-logo-fill", "heart-beat"],ariaLabel:"Lion beating heart animation"})
+    let q = await getQuestionMark({ css: ["help-svg"], ariaLabel: "Help alt+shift+?" })
+const hb = document.querySelector<HTMLButtonElement>(`#help-btn`);
+if (hb) { 
+    hb.innerHTML = ""
+    hb.appendChild(q);
+
+}
+
 const coLogoContainer = document.querySelector<HTMLDivElement>(`#co-logo-container`);
-if (coLogoContainer) coLogoContainer.appendChild(lion);
+if (coLogoContainer) {
+    const br = coLogoContainer.getBoundingClientRect();
+    coLogoContainer.setAttribute("style", `height:${br.width}};`);
+    coLogoContainer.appendChild(lion);
+
+};
     const pgLogo = document.querySelector(`.pg-logo-container`);
     if (pgLogo) {
         let lion = await getLionFace({ css: ["co-logo-fill", "heart-beat"], ariaLabel: "Lion beating heart animation" });
+        const br = pgLogo.getBoundingClientRect();
+        pgLogo.setAttribute("style", `height:${br.width};`);
         pgLogo.appendChild(lion);
     }
 
@@ -150,7 +165,7 @@ const setUpThemeMgr = async ()=>{
     // kh.sayIt = (m:string)=>{ sm.polite(m);};
     
     let kb: KH_Key = kh.newKeyBlank;
-    kb = { ... kb, name: "Next Theme", desc: "Toggle to next Theme", altKey:true, shiftKey:true, key:"C", action:tg};
+    kb = { ... kb, name: "next-theme-alt", desc: "Switch to another theme", altKey:true, shiftKey:true, key:"C", action:tg, category: "general"};
     kh.addKeyTest(kb);
 
     const tme = <HTMLButtonElement>document.getElementById("tm-editor-btn")!;
@@ -159,7 +174,20 @@ tme.addEventListener("click", () => { tm.showEditor() })
 
     
 
-}; 
+};  //setUpTheme
+
+const setUpHelp = async ()=>{
+    help = new LwHelp();
+    const  kb: KH_Key = { ...kh.newKeyBlank, name: "help-alt", desc: "Help Dialog", altKey: true, shiftKey: true, key: "?", action: () => { help.showHelp() } };
+    kh.addKeyTest(kb);
+    kh.addKeyTest({ ...kb, name: "help", altKey: false });
+
+    setTimeout(() => { help.setKeyTables(); },10000);
+    const hb = document.querySelector<HTMLButtonElement>(`#help-btn`);
+    if (hb) hb.onclick = ()=>{help.showHelp();};
+    
+
+}  //setUpHelp
 
 
 // General page wireUp
@@ -182,10 +210,10 @@ ap = await initAP();
 getSVGs();
 
     kh.start();
+    ap.sayTime =  (msg:string)=>{ sm.alert(msg);};
     enableAPKeys();
-help = new LwHelp();
-    let kb: KH_Key = { ...kh.newKeyBlank, name: "Help me", desc: "f1 Help", altKey: true, shiftKey: true, key: "?", action: ()=>{help.showHelp()}};
-    kh.addKeyTest(kb);
+setUpHelp();
+
 
 } // wireUp()
 

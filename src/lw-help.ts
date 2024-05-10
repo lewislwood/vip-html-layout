@@ -16,34 +16,135 @@ type CategoryKeys = {
 }
 
 export class LwHelp {
-    private helpCategories = new Map <string,  CategoryKeys>();
+    private categoryKeys = new Map < string, CategoryKeys[]>(); 
+    private dialog?:HTMLDialogElement;
+
 constructor(){
 console.log("started help");
 } // constructor
-public async setKeyTables() {
+
+private mergeStdAltKeys() {
+    const helpCategories = new Map<string, CategoryKeys>();
     const kh = initKH();
     const keys: KH_Key[] = kh.keyTesters;
-keys.forEach((k)=>{
-this.addKey(k);
-})
+    console.log(`KeyTesters count: ${keys.length}`);
+    keys.forEach((k) => {
+        this.addKey(k, helpCategories);
+    })
+    const catKeys = this.categoryKeys;
+    const sKeys = [...helpCategories.keys()].sort();
+    sKeys.forEach((s) => {
+        const cat = helpCategories.get(s)!;
+        const category = cat.category;
+        if (!catKeys.has(category)) catKeys.set(category, []);
+        const keyList = catKeys.get(category);
+        keyList?.push(cat);
 
+
+    })
+
+} //mergeStdAlt
+
+private getStyleElement():HTMLStyleElement {
+    const style = document.createElement("style");
+    style.innerHTML = `
+dialog {
+    width: min(600px, 100%);
+}
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 3px solid purple;
+}
+
+thead th:nth-child(1) {
+  width: 50%;
+}
+
+thead th:nth-child(2) {
+  width: 70px;
+}
+
+thead th:nth-child(3) {
+  width: 70px;
+}
+
+
+th,
+td {
+  padding: 20px;
+}
+`;
+return style;
+};  //getStyleElement
+
+
+
+public async setKeyTables() {
+    await this.mergeStdAltKeys();
+this.dialog = document.createElement("dialog");
+this.dialog.appendChild(this.getStyleElement());
+this.buildTable("general");
+const cats = [...this.categoryKeys.keys()].sort();
+cats.forEach((s)=>{this.buildTable(s)});
+document.body.appendChild(this.dialog);
 
 };  // setKeyTables
 
-private addKey( k:KH_Key) {
+private buildTable(category:string) {
+    if (! this.categoryKeys.has(category))  return;
+const tKeys = this.categoryKeys.get(category)!;
+this.categoryKeys.delete(category);
+const div = document.createElement("div");
+this.dialog?.appendChild(div);
+const lbl = document.createElement("label"),
+tbl = document.createElement("table");
+lbl.innerHTML = category; 
+div.append(lbl, tbl);
+
+// table headings..
+const thead = document.createElement("thead"),
+tbody = document.createElement("body")
+tbl.append(thead, tbody);
+thead.innerHTML = `
+<caption>${category} keys</caption>
+<tr>
+<th scope="col">Action Description</th>
+<th scope="col">Standard Keys</th>
+<th scope="col">Alt Keys</th>
+</tr>
+`;
+// Now build table body
+tKeys.forEach((k)=>{
+    const tr = document.createElement("tr");
+    tbody.appendChild(tr);
+    tr.innerHTML = `
+    <th scope="row">${k.description}</th>
+<td>${k.standard  ?? "-"}</td>
+<td>${k.alternate ?? "-"}</td>
+    `
+})
+
+
+
+
+
+
+}// buildTable
+
+private addKey( k:KH_Key, helpCategories:Map<string,CategoryKeys>) {
 const srch = `${k.category ?? "general"}.${k.desc}`;
 let kat:CategoryKeys
 
-    if (!this.helpCategories.has(srch)) {kat = { category: k.category ?? "general", description: k.desc ?? "" };this.helpCategories.set(srch , kat); }
-     else kat = this.helpCategories.get(srch)!;
+    if (!helpCategories.has(srch)) {kat = { category: k.category ?? "general", description: k.desc ?? "" };helpCategories.set(srch , kat); }
+     else kat = helpCategories.get(srch)!;
+     kat.category = k.category  ?? "general";
 
 const kd = this.keyDesc(k);
 const alt: boolean = /alt$/.test(k.name);
 if (alt === true) kat.alternate = kd
     else kat.standard = kd;
-
-
-
 } //addKey
 
 private keyDesc(k:KH_Key): string {
@@ -60,12 +161,9 @@ return desc.join("+");
 
 
 public showHelp() {
-    const kh = initKH();
-    const keys: KH_Key[]  = kh.keyTesters;
-
-if (this.helpCategories.has("testing")) alert("you be crazy");
-alert(`There are ${keys.length} to define! `)
-    }
+const dlg = this.dialog;
+dlg?.showModal();   
+    } //show
 
 } // class lwHelp
 

@@ -7,6 +7,7 @@ export type KeyHandlers = {
     jump: {foward?: KH_Key, back?:KH_Key};
     rate: {faster?: KH_Key, slower?:KH_Key};
     volume: {up?:KH_Key, down?: KH_Key};
+    sayTime?: KH_Key; 
 }
 
 
@@ -45,6 +46,7 @@ pause: `
 </svg>`
     }
     private _keys: KeyHandlers[] = [];  // array of key handlers Alt sets
+    public sayTime?:Function;  // You must set this if you want the say time key to be defined and work.
     constructor() {
 window.addEventListener("load", ()=>{ this.loadControls()});
     }// constructor
@@ -281,6 +283,14 @@ if ((mode === "%time") || (mode === "time"))    stat.push(`${this.secondsToStrin
 return stat.join(" "); 
     } // positionAs String
 
+    // retrieves the value being displayed for the current element
+    public statsCurrent():string {
+        if (! this.currentPanel) return "Nothing playing";
+        const ap = this.currentPanel!;
+        const lbl = ap.panel.querySelector<HTMLLabelElement>(`[name="dur-stat"]`)!;
+        return this.positionAsString(ap.audio, "%time") + lbl.innerHTML;        
+    } //statsCurrent
+
     public  get keys():KeyHandlers[] {
         return this._keys;
     } // get keys
@@ -300,11 +310,11 @@ this._keys = [this.blankKeys(), this.blankKeys()];
 const pKeys = this.keys[0], aKeys = this.keys[1];
         const hk = initKH();
 const khGet = (alt: boolean, key:string,prefix: string, desc: string, action:Function):KH_Key  => {
-    return { ...hk.newKeyBlank, altKey: alt, shiftKey: alt, key, name: `${prefix}-${key}${(alt)?"-alt":""}`, desc, action}
+    return { ...hk.newKeyBlank, altKey: alt, shiftKey: alt, key, name: `${prefix}-${key}${(alt)?"-alt":""}`, desc, action, category: "Audio Player"}
 } 
 // goTo section
 for (let k = 0;k<10;k++) {
-   pKeys.goTo.push(  khGet(false,`${k}`,"ap-goto",`Goto ${k}%`,()=>{ this.goTo(k)}) );
+   pKeys.goTo.push(  khGet(false,`${k}`,"ap-goto",`Goto ${k*10}%`,()=>{ this.goTo(k)}) );
 }
 // Jump has screen reader friendly keys as well
         pKeys.jump.foward= khGet(false, `l`, "ap-jump-f","Jump foward 15s",() => { this.jump(15) });
@@ -318,14 +328,28 @@ aKeys.jump.foward = khGet(true, `L`, "ap-jump-f", "Jump foward 15s", () => { thi
 // rate
         pKeys.rate.slower = {...khGet(false, `<`, "ap-rate-s", "Playback rate slower", () => { this.playBackRate(-0.25)}),shiftKey:true} ;
         pKeys.rate.faster = {...khGet(false, `>`, "ap-jump-f", "Playback rate faster", () => { this.playBackRate(0.25) }), shiftKey:true};
-
         aKeys.rate.slower = { ...khGet(true, `<`, "ap-rate-s", "Playback rate slower", () => { this.playBackRate(-0.25) }), shiftKey: true };
         aKeys.rate.faster = { ...khGet(true, `>`, "ap-jump-f", "Playback rate faster", () => { this.playBackRate(0.25) }), shiftKey: true };
         // volume
         pKeys.volume.up = {...khGet(false, `V`, "ap-vol-u", "Volume up", () => { this.volumeChange(0.1) }), shiftKey:true};
         pKeys.volume.down = {...khGet(false, `v`, "ap-vol-d", "Volume down", () => { this.volumeChange(-0.1) }), shiftKey:false};
+        // sayTime
+        if (this.sayTime) {
+            //@ts-ignore
+    const st = (e:Event)=>{ this.SayStats(); e.preventDefault(); }                    
+    aKeys.sayTime= {...khGet(false, "t", "ap-say-time", "* Say Time",st ), shiftKey:false};
+
+        }
     } // generateKeys
     
+    private SayStats() {
+        const st = this.sayTime;
+        if (st) {
+st(this.statsCurrent());
+        }
+    }  // sayStats
+
+
     public async enableKeyHandling() {
         const kh = initKH();
         // kh.addKeyTest(this.keys[1].playPause!)
@@ -346,6 +370,9 @@ const addKey = (k?:KH_Key)=>{if (k) keys.push(k)};
     addKey(pKeys.playPause); addKey(aKeys.playPause);
         addKey(pKeys.volume.up); addKey(pKeys.volume.down); addKey(aKeys.volume.up); addKey(aKeys.volume.down);
         addKey(pKeys.rate.faster); addKey(pKeys.rate.slower); addKey(aKeys.rate.faster); addKey(aKeys.rate.slower);
+        addKey(pKeys.sayTime); addKey(aKeys.sayTime);
+
+
 return keys;
     } // getKeyList
 

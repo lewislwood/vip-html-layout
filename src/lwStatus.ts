@@ -93,16 +93,15 @@ public get mirror(): MirrorMode {
         else         this.elements[mode] = elementOrID as HTMLElement;
 } // setElement
 
-public async quick( message: string, mode?: MirrorMode) {
+public async quick( message: string, mode = this._mirrorMode) {
     try {
-    const m = mode ?? this.mirror;
     if ( this.elements.quick) this.elements.quick.innerHTML = message;
-    if (m === "quick-polite") this.polite(message)
-        else if (m === "quick-alert") this.alert(message);
+    if (mode  === "quick-polite") this.polite(message)
+        else if (mode  === "quick-alert") this.alert(message);
     this.launchClearTimer("quick");
 } catch (err: any) {
-    console.log(`SM.quick error: ${err.message}  msg: ${message}`);
-     //catch
+console.log(`SM.quick error: ${err.message}  msg: ${message}`);
+     //catch    
 }
 
 

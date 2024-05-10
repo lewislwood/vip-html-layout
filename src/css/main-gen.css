@@ -40,12 +40,16 @@ header{
     width: min(100%, 1000px); 
     gap: 10px;
     grid-template-columns: 20% 70%;
+    padding: 0;
+    margin: 0;
 }
 .banner {
     display: block;
     width: 100%;
     font-weight: 700;
     font-size: larger;
+    margin: 0;
+    padding: 0;;;
 }
 
 #theme-toggler {
@@ -275,4 +279,26 @@ justify-items: center;
         font-weight: 200%;
         margin: 0;
         padding:0 ;
+    }
+    #help-btn {
+        height: 18px;
+        border: none;
+        background: none;
+        margin: 0;
+        padding: 0;
+        float:right;
+    }
+    .button-bar {
+        height: 20px;
+        display: block;
+        width: min(100%, 1000px);
+    }
+    .help-svg {
+        fill: white;
+        stroke: white;
+        background: #000080;;;
+    }
+    .pg-logo-container {
+        margin: 0;
+        padding: 0;
     }
