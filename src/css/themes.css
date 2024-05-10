@@ -13,11 +13,11 @@
 
 :root {
     /* Colors for theme pink -> simply email them to the developer and they will  incorporate these values for you */
- --pink-fg: #14f018;
- --pink-bg: #f00000;
- --pink-dlg-fg: #000000;
- --pink-dlg-bg: #000000;
- --pink-canvas: #5a2800;
+ --pink-fg: hsl(310,90%,35%);
+ --pink-bg: hsl(310,90%,75%);
+ --pink-dlg-fg: hsl(310,80%,25%);
+ --pink-dlg-bg: hsl(310,80%,85%);
+ --pink-canvas: hsl(288,80%,65%);
  --pink-img-bg: white;
 --pink-svg-pen: black;
 /* End of pink values */
