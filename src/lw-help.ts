@@ -1,5 +1,6 @@
 
 import { initKH, KH_Key } from "./lwkh"; 
+import { getHelpData } from "./lw-help-data";
 
 
 //   name: LW-Help
@@ -20,14 +21,12 @@ export class LwHelp {
     private dialog?:HTMLDialogElement;
 
 constructor(){
-console.log("started help");
 } // constructor
 
 private mergeStdAltKeys() {
     const helpCategories = new Map<string, CategoryKeys>();
     const kh = initKH();
     const keys: KH_Key[] = kh.keyTesters;
-    console.log(`KeyTesters count: ${keys.length}`);
     keys.forEach((k) => {
         this.addKey(k, helpCategories);
     })
@@ -45,49 +44,36 @@ private mergeStdAltKeys() {
 
 } //mergeStdAlt
 
-private getStyleElement():HTMLStyleElement {
+private async getStyleElement():Promise<HTMLStyleElement> {
     const style = document.createElement("style");
-    style.innerHTML = `
-dialog {
-    width: min(600px, 100%);
-}
-table {
-  table-layout: fixed;
-  width: 100%;
-  border-collapse: collapse;
-  border: 3px solid purple;
-}
-
-thead th:nth-child(1) {
-  width: 50%;
-}
-
-thead th:nth-child(2) {
-  width: 70px;
-}
-
-thead th:nth-child(3) {
-  width: 70px;
-}
-
-
-th,
-td {
-  padding: 20px;
-}
-`;
+    style.innerHTML =  await getHelpData('style');
 return style;
 };  //getStyleElement
+
+private async getHeaderDiv():Promise<HTMLDivElement> {
+    const div = document.createElement("div");
+    div.innerHTML = await getHelpData("header");
+    return div;
+}  // getHeaderDiv
+
+    private async getFooterDiv(): Promise<HTMLDivElement> {
+        const div = document.createElement("div");
+        div.innerHTML = await getHelpData("footer");
+        return div;
+    } // getFooterDiv
 
 
 
 public async setKeyTables() {
     await this.mergeStdAltKeys();
 this.dialog = document.createElement("dialog");
-this.dialog.appendChild(this.getStyleElement());
+this.dialog.appendChild(await this.getStyleElement());
+this.dialog.appendChild(await this.getHeaderDiv());
 this.buildTable("general");
 const cats = [...this.categoryKeys.keys()].sort();
 cats.forEach((s)=>{this.buildTable(s)});
+    this.dialog.appendChild(await this.getFooterDiv());
+
 document.body.appendChild(this.dialog);
 
 };  // setKeyTables
