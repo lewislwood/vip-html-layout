@@ -2,7 +2,7 @@
  // import { defineConfig } from 'vite'
 export default {
   build: {
-    outDir: "docs"
+    outDir: "dist"
   },
   base: "https://lewislwood.github.io/vip-html-layout"
 }
