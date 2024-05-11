@@ -31,6 +31,16 @@
     --dark-img-bg: hsl(240,50%, 60%);
 --dark-svg-pen: hsl(200,85%,85%);
 /* end of dark theme values*/
+    /* /Ocean Wave */
+--ocean-wave-fg: hsl(240, 100%, 25.1%);
+ --ocean-wave-bg: hsl(156.79999999999995, 54.4%, 88.8%);
+ --ocean-wave-dlg-fg: hsl(219.10000000000002, 100%, 95.5%);
+ --ocean-wave-dlg-bg: hsl(240, 100%, 50%);
+ --ocean-wave-canvas: hsl(189.10000000000002, 100%, 60%);
+ --ocean-wave-svg-pen: hsl(0, 0%, 0%);
+ --ocean-wave-img-bg: hsl(205.70000000000005, 100%, 89%);
+/* end ocean wave */
+
 
     /*  Light Theme values */
     --light-bg: lightgray;
