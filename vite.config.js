@@ -4,5 +4,5 @@ export default {
   build: {
     outDir: "docs"
   },
-  base: "https://lewislwood.github.io/vip_html_layout"
+  base: "https://lewislwood.github.io/vip-html-layout"
 }
