@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SM Demo Dialog</title>
+</head>
+<body>
+    <style>
+        body {
+            background: #000080;
+            color: yellow;
+            width: 100%;
+            display: flex;
+            margin: 50px;
+        }
+        .dlg-test-canvas {
+            background: darkgray;
+            color:cyan;
+            width: 80%;
+            padding: 30px;
+        }
+.sm-demo-dialog {
+    display: block;
+    background: #000080;
+    margin: 20px;;
+    width: 40em;
+    height: 33em;
+    border-style: double ;
+    border-width:5px ;
+}
+
+.sm-dlg-hdr {
+    margin-left: 8px;
+    padding-top: 8px;
+    color:yellow;
+}
+.sm-dlg-grid-line {
+    width: 100%;
+    display: inline-block;
+    margin-left: 5px;
+    margin-top: 4px;
+    margin-bottom: 4px;;;;
+}
+.sm-inp-6 {
+    width: 6em;
+}
+.sm-inp-4 {
+    width: 4em;
+}
+.sm-dlg-ftr{
+ DISPLAY: FLEX;
+ justify-content: space-around ;   
+}
+    </style>
+
+    <div class="dlg-test-canvas">
+
+        <div class="sm-demo-dialog">
+
+            <div class="sm-dlg-hdr">
+
+<h5>Status Messages Demo of Handler</h5>
+
+<p>
+    This will demo the Status Message Handle.  All of it's various permutations.  You can adjust the settings and hear the output.  Quick is actually visible to the sighted at the top of the page.  You can choose to mirror that output or have the screen reader automatically speak what is output there or not and you  may want to manually output a different description to the visually impaired with a screen reader.
+</p>
+<p>
+    *** Sighted you may want enable  the screen reaer in Windows to understand. <ctrl>+alt>+<enter> toggles Windows narrator on or off on most computers.  Otherwise, accessiblity settings to enable these hotkeys/feature.</enter></ctrl> Once you enable the <ctrl> will hush up the computer when talking too much for your taste.</ctrl>
+</p>
+<P>
+    Getting and setting the perfect balance is a key to a most succesful website or app that is accessible to the visually impaired. Sighted do not want to see too much details, since it is obvious to them by graphics or display on the screen. Blind as well want quick and succent details/description. Otherwise they hear a whole bunch of talking and grow weary of a site or app that is too wordy.  That is why sighted and blind alike need too understand these concepts.
+</P>
+</div>
+<div class="sm-dlg-body">
+    <span class="sm-dlg-grid-line">
+        <label for="sm-test-msg">Test message: </label>
+<input type="text" id="sm-test-msg" value=""Enter message to speak"" autofocus>
+    </span>
+
+    <span class="sm-dlg-grid-line">
+<label >Visible Status </label>
+<input type="checkbox" id="sm-is-spoken"checked="true">
+<label for="sm-is-spoken">Is Spoken&nbsp;</label>
+<button id="sm-quick-btn">Quick</button>
+<label for="sm-quick-clear-time">Clear Time (ms)</labelsm-quick-clear-time>
+<input type="number" id="sm-quick-clear-time" class="sm-inp-6" max="10000" value="10000" >
+<label for="sm-dlg-mirror">Mirror to </label>
+<select id="sm-dlg-mirror"   name="mirror-mode" id="mirror-mode" >
+<option value="none">None</option>
+<option value="quick-polite" selected>Polite</option>
+<option value="quick-alert">Alert</option>
+</select>
+</span>
+<span class="sm-dlg-grid-line">
+    <label >Polite Status </label>
+<button id="sm-polite-btn">Polite</button>
+<label for="sm-polite-clear-time">Clear Time (ms)</label>
+    <input type="number" id="sm-polite-clear-time" class="sm-inp-6   max="90000" value="350">
+    <label for="sm-polite-size">Max Size</label>
+        <input type="number" id="sm-polite-size" class="sm-inp-4" max="999"   value="200">
+
+
+</span>
+<span class="sm-dlg-grid-line">
+    <label>Alert&nbsp;&nbsp;Status </label>
+    <button id="sm-alert-btn">Alert&nbsp;</button>
+    <label for="sm-alert-clear-time">Clear Time (ms)</label>
+    <input type="number" id="sm-alert-clear-time" class="sm-inp-6"  max="90000" value="30000">
+    <label for="sm-alert-size">Max Size</label>
+    <input type="number" id="sm-alert-size" class="sm-inp-4" max="999" value="800">
+</span>
+
+<!-- sm-dlg-body -->
+</div>
+<div class="sm-dlg-ftr">
+    <SPAN>
+    <button id="sm-clear-all-btn">Clear All</button>
+    <label for="sm-clear-al-notify">&nbsp;and Notify&nbsp;</label>
+    <input type="checkbox" id="sm-clear-al-notify"  checked="true"   >
+    </SPAN>
+    <form method="dialog">
+        <button type="dialog" id="sm-dlg-close-btn">Close</button>
+    </form>
+</div>
+
+</div>
+<!-- test dialog container end -->
+</div>
+
+</body>
+</html>   

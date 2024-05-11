@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Edit Dialog</title>
+</head>
+
+<body>
+    <style>
+        body {
+            background: #000080;
+            color: yellow;
+            width: 100%;
+            margin: 50px;
+        }
+
+        .dlg-test-canvas {
+            background: darkgray;
+            color: cyan;
+            width: 18%;
+            padding: 30px;
+            float: right;
+        }
+
+        .tm-edit-dialog {
+            display: block;
+            float: right;
+            background: #000080;
+            color:yellow;
+            margin-left: 25px;;
+            margin-right: 25px;
+            width: 20em;
+            border-style: double;
+            border-width: 5px;
+            top: 200px;
+        }
+
+        .tm-dlg-hdr {
+            margin-left: 8px;
+            padding-top: 8px;
+            color: yellow;
+        }
+
+        .tm-dlg-grid-line, .tm-color-pair {
+            width: 100%;
+            display: inline-block;
+            margin-left: 5px;
+            margin-top: 4px;
+            margin-bottom: 4px;
+        }
+
+        .tm-inp-6 {
+            width: 6em;
+        }
+
+        .tm-inp-4 {
+            width: 4em;
+        }
+
+        .tm-dlg-ftr {
+            DISPLAY: FLEX;
+            justify-content: space-around;
+            margin-bottom: 5px;;
+        }
+        .tm-dlg-top-line {
+            width: 100%;
+            font-weight:300;
+            font-size: larger;;
+            border-top: 2px double;
+            border-bottom: 2px solid ;
+        }
+        .tm-footer-controls {
+            display:inline-block;
+        }
+        .tm-color-swatch {
+            display: block;
+            border-style: solid;
+            border-width: 1px;;
+            width: 2em;
+            height: 1em;
+        }
+        .tm-color-mono {
+            display:block;
+            width: 46%;
+            float:right;
+        }
+        .tm-color-container{
+            display:block;
+            width: 100%;
+        }
+    </style>
+
+    <div class="dlg-test-canvas">
+
+        <div class="tm-edit-dialog">
+
+            <div class="tm-dlg-hdr">
+
+                <h5>Theme  Editor Dialog</h5>
+
+                <p>
+                   Here you can review and edit the current theme colors. Once you like your color settings simply select the copy to clipboard and paste it into an email  for your developer.  
+                </p>
+                <p>                   
+                    Once the developer receives this email.  It is a simple matter matter to incorporate the edited color scheme as a new or revised one.
+                    *** Warning the edited color theme is not saved anywhere, thus after you reload the browser the edited version of the theme will no longer be present.  This also an easy way to abort/abandon the color scheme. ((f5) will reload the browser).
+                <P>
+                </P>
+            </div>
+                <form name="theme-editor"  method="dialog" >
+            <div class="tm-dlg-body">
+                <div class="tm-color-container">
+
+                <span class="tm-dlg-top-line">
+                    <label for="tm-theme-name">Youre editing theme: &nbsp;</label> <input id="tm-theme-name"  type="text" name="theme"value="dark"  readonly>
+                                    </span>
+    <span class="tm-color-pair">
+        <label class="tm-color-label">General fg:bg&nbsp;</label>
+        <label style="color:yellow;background: #000;">#032080:#304484</label>
+        <input name="fg" type="color" class="tm-inp-color" value="#000" aria-label="General foreground">
+        &nbsp;
+        <input name="bg" type="color" class="tm-inp-color" value="#000080" aria-label="general background">
+    
+    </span>
+    <span class="tm-color-pair">
+<label class="tm-color-label" >Dialog fg:bg&nbsp;</label>  
+<label style="background:yellow;color:black;">#000080:#204414</label>
+<input name="dlg-fg"   type="color" class="tm-inp-color" value="#000" aria-label="dialog foreground"  >
+&nbsp;
+<input name="dlg-bg"  type="color" class="tm-inp-color" value="#000080"  aria-label="dialog background">
+
+    </span>
+
+                <span class="tm-color-mono">
+                <label>image bg</label>        
+                <div class="tm-color-swatch"  style="background: cyan;;">&nbsp;</div>
+<input name="img-bg"   type="color" class="tm-inp-color" value="#000" aria-label="Image background"  >
+
+                </span>
+                <span class="tm-color-mono">
+                    <label>svg pen</label>
+                    <div class="tm-color-swatch" style="background: black;">&nbsp;</div>
+                    <input name="svg-pen" type="color" class="tm-inp-color" value="#000" aria-label="SVG graphics pen">
+                
+                </span>
+
+                <span class="tm-color-mono">
+                    <label>Canvas</label>
+                    <div class="tm-color-swatch" style="background: darkgray;">&nbsp;</div>
+                    <input name="canvas" type="color" class="tm-inp-color" value="#000" aria-label="canvas background">
+                
+                </span>
+<!-- tm-color-container -->
+                </div>
+                <!-- tm-dlg-body -->
+            </div>
+            <div class="tm-dlg-grid-line">
+
+            <div class="tm-dlg-ftr">
+                    <button id="apply"  alt="Apply colors to the theme" >Apply</button>
+                    <button alt="Copy theme colors to clipboard to paste elesewhere" >Copy</button>
+                    <button type="dialog" id="sm-dlg-close-btn">Close</button>
+            </div>
+            </div>
+
+                </form>
+
+
+        </div>
+        <!-- test dialog container end -->
+    </div>
+<script>
+    const app = document.getElementById("apply");
+    app.onclick = (e)=>{ checkForm(e) };
+
+
+    function checkForm(e) {
+        const myForm = app.form;
+        const fd= new FormData(myForm);
+        let msg ="";
+        for (let [key, value] of fd.entries()) {
+            msg +=`${key}:${value}, `; 
+        }
+        alert(msg);
+    }
+</script>
+
+</body>
+
+</html>
