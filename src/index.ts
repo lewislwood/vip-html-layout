@@ -12,6 +12,16 @@ import {LwHelp} from "./lw-help";
 // Comment out both imports for no status management, Only 1 status management to uncomment (1 with demo support and lighter version without demo)
 // import { initSM, LwStatus, isStatusDefined } from "./lwStatus";
 import { initSM, LwStatusDemo as LwStatus, isStatusDefined } from "./lwStatusDemo";
+
+
+//  Name: index.ts
+//
+//   Author: Lewis L. Wood
+//
+//   Date: May 13, 2024
+//
+// description: Imports all css and components. and wires up everything.
+//
 type SM_Override = LwStatus | { [key: string]: Function }
 
 // Uncomment the below lines if you want no status management and you commented out the above 2 import status managment lines

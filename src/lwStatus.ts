@@ -14,7 +14,11 @@ Project:  LW Status Message Handler
 Date: February 10, 2024
 
 Author: Lewis L. Wood
-Description: Purpose to provide easy handling of status messages
+Description: Purpose to provide easy handling of status messages.
+
+YSimply plug and play.  Use only what you need, very lightweight.
+
+The demo is only for developers to see potential and nothing more and is heavy. It is not needed nor desired.
 for the Sighted as well as visually impaired.
 */
 export const isStatusDefined = true;  

@@ -5,6 +5,7 @@ import { getHelpData } from "./lw-help-data";
 
 //   name: LW-Help
 // Date: 5/7/2024
+//  Author: Lewis L Wood
 
 // description: Integrates with the LW-KH, keyboard handler.
 //              Uses the KeyTest array to generate tables for the various categories of MediaKeySession[Symbol] Tables will have 2 columns Standard and Screen reader MediaKeySession[Symbol]        

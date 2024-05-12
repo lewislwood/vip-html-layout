@@ -1,5 +1,18 @@
 "use strict";
 
+//  Name: lw-kh.ts
+//
+//   Date: May 13, 2024
+//
+//   Author: Lewis L Wood
+//
+// description: Fast, easy, and convenient way to handle standard key up events.
+//
+//  integrates:  lw-ap.ts & lw-help.ts depend on this
+//
+
+
+
 let lwKeyHandler: LwKeyHandler;
 
 export const initKH = ()=> {

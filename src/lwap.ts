@@ -1,6 +1,19 @@
 "use strict";
 import { KH_Key, initKH } from "./lwkh";
 
+
+//  Name: l-ap.ts
+//
+//   Date: May 13, 2024
+//
+//   Author: Lewis L Wood
+//
+// description: Audio Player that mimics Youtube Player, generates the key handlers.  Designed with Screen readers in mind.
+//
+//  integrates: lw-kh.ts - My key handler 
+//
+
+
 export type KeyHandlers = {
     goTo: KH_Key[];
     playPause?: KH_Key;

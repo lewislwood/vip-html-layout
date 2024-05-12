@@ -32,4 +32,16 @@
  --forest-canvas: hsl(16.69999999999999, 66.5%, 43.3%);
  --forest-svg-pen: hsl(278.20000000000005, 18%, 12%);
  /* end of forest */
+
+/* Colors for theme light -> simply email them to the developer and they will  incorporate these values for you */
+ --light-fg: hsl(240, 100%, 25.1%);
+ --light-bg: hsl(0, 0%, 82.7%);
+ --light-dlg-fg: hsl(0, 0%, 100%);
+ --light-dlg-bg: hsl(240, 100%, 50%);
+ --light-canvas: hsl(60, 100%, 50%);
+ --light-svg-pen: hsl(0, 0%, 0%);
+ --light-img-bg: hsl(0, 0%, 100%);
+/* End of light values */
+
+
 }

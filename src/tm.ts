@@ -21,9 +21,23 @@ const colorDesc:ColorDesc ={
     "svg-pen": { name: "SVG Pen", desc: "SVG graphics pen" },
     "link-fg": { name: "Link", desc: "Link unvisited" },
     "visited-fg": { name: "Link visited", desc: "Link visited" },
-
-
 }
+
+
+//  Name: lw-tm.ts
+//
+//   Date: May 13, 2024
+//
+//   Author: Lewis L Wood
+//
+// description: Theme Manager
+//   Enables swapping between themes easily. Allows creation/editing theme colors. Copy to clipboard and developer integrates theme.
+//   Color ADA Ratio analysis and pickers.
+//  
+//
+
+
+
 
 type RatioWires = {
     sFg: HTMLSelectElement;
