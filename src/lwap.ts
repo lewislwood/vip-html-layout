@@ -143,7 +143,7 @@ private async createAudioPanel(a: HTMLAudioElement) {
     const pholder:HTMLDivElement  = document.createElement("div");
     pholder.innerHTML= `
 <div class="ap-panel" id="${a.id}-panel">
-        <button name="ap-btn-play" class="lwap-main-btn">Play</button>
+        <button name="ap-btn-play" class="lwap-main-btn">${this.html.pause}</button>
         <label class="ap-status ap-status-left" name="cur-stat"></label>
         <label class="ap-status ap-status-right" name="dur-stat">${this.secondsToString(a.duration)}</label>
     </div>
