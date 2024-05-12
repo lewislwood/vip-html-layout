@@ -23,4 +23,13 @@
  --royal-img-bg: hsl(240, 50%, 60%);
 
 /* end of royal */
+
+/* forest */
+--forest-fg: hsl(277.79999999999995, 100%, 10.6%);
+ --forest-bg: hsl(135.2, 39.7%, 42.9%);
+ --forest-dlg-fg: hsl(219.10000000000002, 100%, 95.5%);
+ --forest-dlg-bg: hsl(100, 29.9%, 49.2%);
+ --forest-canvas: hsl(16.69999999999999, 66.5%, 43.3%);
+ --forest-svg-pen: hsl(278.20000000000005, 18%, 12%);
+ /* end of forest */
 }
