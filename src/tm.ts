@@ -4,7 +4,7 @@ import Color  from "color";
 import {getContrast} from "accessible-colors";
 
 // This theme Names must equal list of themes in CSS file, order  is presentation order as well. CSS will select the starting poin 
-const _themeNames = ["pink","ocean-wave",  "light", "dark"];
+const _themeNames = ["pink","ocean-wave", "royal",  "light", "dark"];
 // SUFFIXES BESIDES BG & COLOROnly these suffixes will be swapped per theme.
 const _suffixeses = ["canvas", "dlg-bg", "dlg-fg", "img-bg", "svg-pen"]; 
 //  Gives nice description  of   colors for editing

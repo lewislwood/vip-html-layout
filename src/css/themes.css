@@ -33,13 +33,25 @@
 /* end of dark theme values*/
     /* /Ocean Wave */
 --ocean-wave-fg: hsl(240, 100%, 25.1%);
- --ocean-wave-bg: hsl(156.79999999999995, 54.4%, 88.8%);
- --ocean-wave-dlg-fg: hsl(219.10000000000002, 100%, 95.5%);
- --ocean-wave-dlg-bg: hsl(240, 100%, 50%);
- --ocean-wave-canvas: hsl(189.10000000000002, 100%, 60%);
+ --ocean-wave-fg: hsl(221, 100%, 25.1%);
+ --ocean-wave-bg: hsl(181.20000000000005, 63.6%, 69.8%);
+ --ocean-wave-dlg-fg: hsl(187.39999999999998, 48.9%, 26.1%);
+ --ocean-wave-dlg-bg: hsl(202.60000000000002, 81.4%, 72.5%);
+ --ocean-wave-canvas: hsl(192.20000000000005, 92.5%, 36.5%);
  --ocean-wave-svg-pen: hsl(0, 0%, 0%);
- --ocean-wave-img-bg: hsl(205.70000000000005, 100%, 89%);
+ --ocean-wave-img-bg: hsl(0, 0%, 100%);
 /* end ocean wave */
+
+/* royal */
+--royal-fg: hsl(72, 78.3%, 72.9%);
+ --royal-bg: hsl(241, 80%, 25.5%);
+ --royal-dlg-fg: hsl(0, 0%, 100%);
+ --royal-dlg-bg: hsl(240, 86.6%, 38%);
+ --royal-canvas: hsl(270, 72%, 30.8%);
+ --royal-svg-pen: hsl(199, 84.4%, 84.9%);
+ --royal-img-bg: hsl(240, 50%, 60%);
+
+/* end of royal */
 
 
     /*  Light Theme values */
