@@ -1,16 +1,18 @@
 .lwap-svg-fill {
-fill: var(--theme-svg-pencil, white);
+fill: var(--theme-apc-fg);
+background: var(--theme-apc-bg);;
 }
 
 .lwap-main-sz {
-    fill: var(--theme-svg-pen);;
+    fill: var(--theme-svg-pen);
     height: 30px;
     width: 30px;
     margin: 0;
     padding: 0;
 }
 .lwap-main-btn {
-    background: var(--theme-bg);
+    background: var(--theme-apc-bg);
+    color: var(--theme-apc-fg);
 }
 
 

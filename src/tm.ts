@@ -6,17 +6,23 @@ import {getContrast} from "accessible-colors";
 // This theme Names must equal list of themes in CSS file, order  is presentation order as well. CSS will select the starting poin 
 const _themeNames = ["pink","ocean-wave", "forest", "royal",  "light", "dark"];
 // SUFFIXES BESIDES BG & COLOROnly these suffixes will be swapped per theme.
-const _suffixeses = ["canvas", "dlg-bg", "dlg-fg", "img-bg", "svg-pen"]; 
+const _suffixeses = ["canvas", "dlg-bg", "dlg-fg", "img-bg", "svg-pen", "apc-fg", "apc-bg", "link-fg", "visited-fg"]; 
 //  Gives nice description  of   colors for editing
 type ColorDesc = {[key:string]: {name:string, desc: string}}
 const colorDesc:ColorDesc ={
     // pairs are fg or bg, remove the -fg or -bg, no description is needed.
     "gen": {name: "General", desc: ""},
     "dlg": { name: "Dialog", desc: "" },
+    "apc": { name: "Audio Player", desc: "" },
+
     // mono colors need description, leave the -fg or -bg if present
     "canvas": { name: "Canvas bg", desc: "Canvas Background color" },
     "img-bg": { name: "Image bg", desc: "Image Background color" },
     "svg-pen": { name: "SVG Pen", desc: "SVG graphics pen" },
+    "link-fg": { name: "Link", desc: "Link unvisited" },
+    "visited-fg": { name: "Link visited", desc: "Link visited" },
+
+
 }
 
 type RatioWires = {

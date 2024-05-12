@@ -11,6 +11,12 @@
     height: 1px; 
     overflow:hidden; 
 }
+a:link {
+    color: var(--theme-link-fg);
+}
+a:visited {
+    color: var(--theme-visited-fg);
+}
 .outer-container {
     width: 100%;
     display: grid;
