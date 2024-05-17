@@ -158,7 +158,7 @@ if (coLogoContainer) {
 };
     const pgLogo = document.querySelector(`.pg-logo-container`);
     if (pgLogo) {
-        let lion = await getLionFace({ css: ["co-logo-fill", "heart-beat"], ariaLabel: "Lion beating heart animation" });
+        let lion = await getLionFace({ css: ["co-logo-fill", "heart-beat"], ariaLabel: "Pulsing Face of a Lion" });
         const br = pgLogo.getBoundingClientRect();
         pgLogo.setAttribute("style", `height:${br.width};`);
         pgLogo.appendChild(lion);
